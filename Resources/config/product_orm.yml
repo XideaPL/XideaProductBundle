@@ -1,0 +1,22 @@
+parameters:
+    xidea_product.product_repository.default.class: Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepository
+    xidea_product.product_loader.default.class: Xidea\Bundle\ProductBundle\Entity\Loader\ProductLoader
+    xidea_product.product_manager.default.class: Xidea\Bundle\ProductBundle\Entity\Manager\ProductManager
+  
+services:
+    xidea_product.product_repository.default:
+        class: %xidea_product.product_repository.default.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %xidea_product.product.class%
+    xidea_product.product_loader.default:
+        class: %xidea_product.product_loader.default.class%
+        arguments:
+            - @xidea_product.product_repository.default
+            - @knp_paginator
+    xidea_product.product_manager.default:
+        class: %xidea_product.product_manager.default.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher

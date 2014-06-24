@@ -1,0 +1,19 @@
+parameters:
+    xidea_product.product_factory.class: Xidea\Bundle\ProductBundle\Model\Factory\ProductFactory
+    xidea_product.product_builder.class: Xidea\Bundle\ProductBundle\Model\Builder\ProductBuilder
+    xidea_product.product_director.class: Xidea\Bundle\ProductBundle\Model\Builder\ProductDirector
+  
+services:
+    xidea_product.product_factory.default:
+        class: %xidea_product.product_factory.class%
+        arguments:
+            - %xidea_product.product.class%
+    xidea_product.product_builder.default:
+        class: %xidea_product.product_builder.class%
+        arguments:
+            - @xidea_product.product_factory
+    xidea_product.product_director.default:
+        class: %xidea_product.product_director.class%
+        arguments:
+            - @xidea_product.product_builder
+            - @xidea_product.member_provider

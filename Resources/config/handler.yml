@@ -1,0 +1,15 @@
+parameters:
+    xidea_product.route_handler.class: Xidea\Bundle\ProductBundle\Routing\RouteHandler
+    xidea_product.view_handler.class: Xidea\Bundle\ProductBundle\View\ViewHandler
+  
+services:
+    xidea_product.route_handler.default:
+        class: %xidea_product.route_handler.class%
+        arguments:
+            - @router
+    xidea_product.view_handler.default:
+        class: %xidea_product.view_handler.class%
+        arguments:
+            - @templating
+            - %xidea_product.layouts%
+            - %xidea_product.templates%

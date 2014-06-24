@@ -1,0 +1,14 @@
+services:
+    xidea_product.create.form.factory:
+        class: Xidea\Bundle\ProductBundle\Form\Factory\FormFactory
+        arguments:
+            - @form.factory
+            - %xidea_product.create.form.name%
+            - %xidea_product.create.form.type%
+            - %xidea_product.create.form.validation_groups%
+    xidea_product.create.form.type:
+        class: Xidea\Bundle\ProductBundle\Form\Type\ProductType
+        arguments:
+            - %xidea_product.product.class%
+        tags:
+            - { name: form.type, alias: "xidea_product_create" }

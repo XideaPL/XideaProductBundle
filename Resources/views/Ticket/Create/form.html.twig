@@ -1,0 +1,20 @@
+{% form_theme form with '::fields.html.twig' %}
+{{ form_start(form, {'multipart': true}) }}
+    <div class="form-errors">
+        {{ form_errors(form) }}
+        {#{{ form_errors(form.captcha) }}#}
+    </div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            {{ form_label(form.body) }}
+            <div>
+                {{ form_widget(form.body) }}
+                <div class="error-message">{{ form_errors(form.body) }}</div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-success btn-block" type="submit">{{ 'product_create.submit'|trans({}, 'form') }}</button>
+    <p>
+        {{ 'required_fields'|trans({}, 'form')|raw }}
+    </p>
+{{ form_end(form) }}

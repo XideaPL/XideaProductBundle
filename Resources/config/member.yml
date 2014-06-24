@@ -1,0 +1,8 @@
+parameters:
+    xidea_product.member_provider.class: Xidea\Bundle\ProductBundle\Model\Provider\MemberProvider
+  
+services:
+    xidea_product.member_provider.default:
+        class: %xidea_product.member_provider.class%
+        arguments:
+            - @security.context

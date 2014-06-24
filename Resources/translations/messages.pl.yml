@@ -1,0 +1,14 @@
+product:
+    label: Zgłoszenie
+    body: Treść zgłoszenia
+    createdAt: Zarejestrowano
+    updatedAt: Zmodyfikowano
+    
+product_create:
+    title: Nowe zgłoszenie
+    route:
+      name: Nowe zgłoszenie
+      
+product_list:
+    title: Zgłoszenia
+      

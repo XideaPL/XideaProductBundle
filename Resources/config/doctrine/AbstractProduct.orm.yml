@@ -1,0 +1,24 @@
+Xidea\Bundle\ProductBundle\Entity\AbstractProduct:
+    type: mappedSuperclass
+    repositoryClass: Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 255
+        description:
+            type: text
+        createdAt:
+            column: created_at
+            type: datetime
+            nullable: true
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: true
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

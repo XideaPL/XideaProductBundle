@@ -1,0 +1,20 @@
+parameters:
+    xidea_product.controller.list.class: Xidea\Bundle\ProductBundle\Controller\Product\ListController
+    xidea_product.controller.create.class: Xidea\Bundle\ProductBundle\Controller\Product\CreateController
+  
+services:
+    xidea_product.controller.list:
+        class: %xidea_product.controller.list.class%
+        arguments:
+            - @xidea_product.product_loader
+            - @event_dispatcher
+            - @xidea_product.view_handler
+    xidea_product.controller.create:
+        class: %xidea_product.controller.create.class%
+        arguments:
+            - @xidea_product.product_director
+            - @xidea_product.product_manager
+            - @xidea_product.create.form.factory
+            - @event_dispatcher
+            - @xidea_product.route_handler
+            - @xidea_product.view_handler
