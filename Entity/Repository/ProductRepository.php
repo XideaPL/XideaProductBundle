@@ -1,13 +1,24 @@
 <?php
 
+/*
+ * (c) Xidea Artur Pszczółka <biuro@xidea.pl>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Xidea\Bundle\ProductBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Security\Core\User\UserInterface;
 
+use Xidea\Component\Product\Model\AuthorInterface;
+
+/**
+ * @author Artur Pszczółka <a.pszczolka@xidea.pl>
+ */
 class ProductRepository extends EntityRepository implements ProductRepositoryInterface
 {
-    public function findByAuthorQB(UserInterface $author)
+    public function findByAuthorQB(AuthorInterface $author)
     {
         $qb = $this->createQueryBuilder('p');
         
@@ -28,7 +39,7 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
         return $qb;
     }
     
-    public function findByAuthor(UserInterface $author)
+    public function findByAuthor(AuthorInterface $author)
     {
         $qb = $this->findByAuthorQB($author);
 

@@ -22,7 +22,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ 'product.body'|trans }}</th>
+                                    <th>{{ 'product.name'|trans }}</th>
                                     <th>{{ 'product.created_at'|trans }}</th>
                                     <th>{{ 'product.updated_at'|trans }}</th>
                                 </tr>
@@ -31,7 +31,7 @@
                                 {% for product in products %}
                                     <tr>
                                         <td>{{ product.id }}</td>
-                                        <td>{{ product.body }}</td>
+                                        <td>{{ product.name }}</td>
                                         <td>{{ product.createdAt|xidea_date() }}</td>
                                         <td>{{ product.updatedAt|xidea_date() }}</td>
                                     </tr>

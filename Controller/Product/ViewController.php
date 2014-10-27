@@ -7,15 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle\Model\Factory;
+namespace Xidea\Bundle\ProductBundle\Controller\Product;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-interface ProductFactoryInterface
+class ViewController extends AbstractViewController
 {
-    /**
-     * @return \Xidea\Bundle\ProductBundle\Model\ProductInterface
-     */
-    public function create();
 }

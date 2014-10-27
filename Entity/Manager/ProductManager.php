@@ -10,11 +10,13 @@
 namespace Xidea\Bundle\ProductBundle\Entity\Manager;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+
 use Doctrine\ORM\EntityManager;
-use Xidea\Bundle\ProductBundle\Model\Manager\ProductManagerInterface;
-use Xidea\Bundle\ProductBundle\Model\ProductInterface;
+
+use Xidea\Component\Product\Model\Manager\ProductManagerInterface,
+    Xidea\Component\Product\Model\ProductInterface;
+
 use Xidea\Bundle\ProductBundle\ProductEvents;
-use Xidea\Bundle\ProductBundle\Event\ProductEvent;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -56,8 +58,6 @@ class ProductManager implements ProductManagerInterface
         $this->eventDispatcher->dispatch(ProductEvents::PRE_SAVE, new ProductEvent($product));
 
         return $product->getId();
-//        if($flush)
-//            $this->objectManager->flush();
     }
     
     public function update(ProductInterface $product)
@@ -67,8 +67,6 @@ class ProductManager implements ProductManagerInterface
         $this->entityManager->flush();
 
         return $product->getId();
-//        if($flush)
-//            $this->objectManager->flush();
     }
 
     /**
@@ -77,8 +75,6 @@ class ProductManager implements ProductManagerInterface
     public function delete(ProductInterface $product)
     {
         $this->entityManager->remove($product);
-//        if($flush)
-//            $this->objectManager->flush();
     }
 
 }

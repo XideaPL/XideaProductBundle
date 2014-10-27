@@ -1,6 +1,7 @@
 parameters:
-    xidea_product.controller.list.class: Xidea\Bundle\ProductBundle\Controller\Product\ListController
-    xidea_product.controller.create.class: Xidea\Bundle\ProductBundle\Controller\Product\CreateController
+    xidea_product.controller.list.class: Xidea\Bundle\ProductBundle\Controller\Ticket\ListController
+    xidea_product.controller.create.class: Xidea\Bundle\TicketBundle\Controller\Ticket\CreateController
+    xidea_product.controller.view.class: Xidea\Bundle\TicketBundle\Controller\Ticket\ViewController
   
 services:
     xidea_product.controller.list:
@@ -14,7 +15,13 @@ services:
         arguments:
             - @xidea_product.product_director
             - @xidea_product.product_manager
-            - @xidea_product.create.form.factory
+            - @xidea_product.create_form.handler
             - @event_dispatcher
             - @xidea_product.route_handler
+            - @xidea_product.view_handler
+    xidea_product.controller.view:
+        class: %xidea_product.controller.view.class%
+        arguments:
+            - @xidea_product.product_loader
+            - @event_dispatcher
             - @xidea_product.view_handler

@@ -20,7 +20,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class ProductType extends AbstractType
 {
-
+    /*
+     * var string
+     */
     protected $class;
 
     /**

@@ -13,8 +13,9 @@ use Doctrine\ORM\EntityManager;
 
 use Knp\Component\Pager\Paginator;
 
-use Xidea\Bundle\ProductBundle\Model\Loader\ProductLoaderInterface,
-    Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepositoryInterface;
+use Xidea\Component\Product\Loader\ProductLoaderInterface;
+
+use Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepositoryInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>

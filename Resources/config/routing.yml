@@ -1,0 +1,8 @@
+parameters:
+    xidea_product.route_handler.class: Xidea\Bundle\ProductBundle\Routing\RouteHandler
+  
+services:
+    xidea_product.route_handler.default:
+        class: %xidea_product.route_handler.class%
+        arguments:
+            - @router

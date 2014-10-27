@@ -12,15 +12,14 @@ namespace Xidea\Bundle\ProductBundle\Controller\Product;
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\RedirectResponse,
     Symfony\Component\EventDispatcher\EventDispatcherInterface;
-        
-use Xidea\Bundle\ProductBundle\Model\Builder\ProductDirectorInterface,
-    Xidea\Bundle\ProductBundle\Model\Manager\ProductManagerInterface,
-    Xidea\Bundle\ProductBundle\Form\Factory\FormFactoryInterface,
+
+use Xidea\Component\Product\Builder\ProductDirectorInterface,
+    Xidea\Component\Product\Manager\ProductManagerInterface;
+use Xidea\Bundle\ProductBundle\Form\Handler\ProductFormHandlerInterface,
     Xidea\Bundle\ProductBundle\ProductEvents,
     Xidea\Bundle\ProductBundle\Event\GetResponseEvent,
     Xidea\Bundle\ProductBundle\Event\GetProductResponseEvent,
     Xidea\Bundle\ProductBundle\Event\FilterProductResponseEvent,
-    Xidea\Bundle\ProductBundle\Event\FormEvent,
     Xidea\Bundle\ProductBundle\Routing\RouteHandlerInterface,
     Xidea\Bundle\ProductBundle\View\ViewHandlerInterface;
 
@@ -40,9 +39,9 @@ abstract class AbstractCreateController
     protected $productManager;
 
     /*
-     * @var FormFactoryInterface
+     * @var ProductFormHandlerInterface
      */
-    protected $formFactory;
+    protected $formHandler;
     
     /*
      * @var EventDispatcherInterface
@@ -64,12 +63,12 @@ abstract class AbstractCreateController
      */
     protected $options;
 
-    public function __construct(ProductDirectorInterface $productDirector, ProductManagerInterface $productManager, FormFactoryInterface $formFactory, EventDispatcherInterface $eventDispatcher, RouteHandlerInterface $routeHandler, ViewHandlerInterface $viewHandler)
+    public function __construct(ProductDirectorInterface $productDirector, ProductManagerInterface $productManager, ProductFormHandlerInterface $formHandler, EventDispatcherInterface $eventDispatcher, RouteHandlerInterface $routeHandler, ViewHandlerInterface $viewHandler)
     {
         $this->productDirector = $productDirector;
         $this->productManager = $productManager;
         $this->eventDispatcher = $eventDispatcher;
-        $this->formFactory = $formFactory;
+        $this->formHandler = $formHandler;
         $this->routeHandler = $routeHandler;
         $this->viewHandler = $viewHandler;
     }
@@ -84,6 +83,8 @@ abstract class AbstractCreateController
         }
 
         $product = $this->productDirector->build();
+        $form = $this->formHandler->createForm();
+        $form->setData($product);
 
         $event = new GetProductResponseEvent($product, $request);
         $this->eventDispatcher->dispatch(ProductEvents::PRE_CREATE, $event);
@@ -91,45 +92,37 @@ abstract class AbstractCreateController
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
+        
+        if($this->formHandler->handle($form, $request)) {
+            if ($this->manager->save($product)) {
+                $event = new GetProductResponseEvent($product, $request);
+                $this->eventDispatcher->dispatch(ProductEvents::CREATE_SUCCESS, $event);
 
-        $form = $this->formFactory->createForm();
-        $form->setData($product);
-
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $event = new FormEvent($form, $request);
-                $this->eventDispatcher->dispatch(ProductEvents::CREATE_FORM_VALID, $event);
-
-                if ($this->manager->save($product)) {
-                    $event = new GetProductResponseEvent($product, $request);
-                    $this->eventDispatcher->dispatch(ProductEvents::CREATE_SUCCESS, $event);
-
-                    if (null === $response = $event->getResponse()) {
-                        $url = $this->routeHandler->handle('view', array(
-                            'id' => $product->getId()
-                        ));
-                        $response = new RedirectResponse($url);
-                    }
-
-                    $this->eventDispatcher->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($product, $request, $response));
-
-                    return $response;
+                if (null === $response = $event->getResponse()) {
+                    $url = $this->routeHandler->handle('view', array(
+                        'id' => $product->getId()
+                    ));
+                    
+                    $response = $this->viewHandler->createRedirectResponse($url);
                 }
+
+                $this->eventDispatcher->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($product, $request, $response));
+
+                return $response;
             }
         }
 
         return $this->viewHandler->handle('create', array(
-                    'form' => $form->createView()
+            'form' => $form->createView()
         ));
     }
 
     public function createFormAction()
     {
-        $form = $this->formFactory->createForm();
+        $form = $this->formHandler->buildForm();
 
         return $this->viewHandler->handle('create_form', array(
-                    'form' => $form->createView()
+            'form' => $form->createView()
         ));
     }
 }

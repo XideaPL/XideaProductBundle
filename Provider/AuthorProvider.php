@@ -7,10 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle\Model\Provider;
+namespace Xidea\Bundle\ProductBundle\Provider;
 
-use Symfony\Component\Security\Core\SecurityContextInterface,
-    Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+
+use Xidea\Component\Product\Model\AuthorInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -30,7 +31,7 @@ class AuthorProvider implements AuthorProviderInterface
     public function provide()
     {
         $author = $this->securityContext->getToken()->getUser();
-        if($author instanceof UserInterface)
+        if($author instanceof AuthorInterface)
             return $author;
         
         return null;            

@@ -9,7 +9,7 @@
 
 namespace Xidea\Bundle\ProductBundle\Entity\Repository;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Xidea\Component\Product\Model\AuthorInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -21,12 +21,12 @@ interface ProductRepositoryInterface
      * 
      * @return object
      */
-    public function findByAuthorQB(UserInterface $author);
+    public function findByAuthorQB(AuthorInterface $author);
     
     /**
      * Returns a set of products by author.
      * 
      * @return array
      */
-    public function findByAuthor(UserInterface $author);
+    public function findByAuthor(AuthorInterface $author);
 }
