@@ -14,7 +14,6 @@ services:
         class: %xidea_product.product_loader.default.class%
         arguments:
             - @xidea_product.product_repository.default
-            - @knp_paginator
     xidea_product.product_manager.default:
         class: %xidea_product.product_manager.default.class%
         arguments:

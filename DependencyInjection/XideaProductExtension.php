@@ -25,9 +25,8 @@ class XideaProductExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('product.yml');
         $loader->load('product_orm.yml');
-        $loader->load('member.yml');
+        $loader->load('user.yml');
         $loader->load('controller.yml');
-        $loader->load('handler.yml');
         $loader->load('form.yml');
 
         $container->setParameter('xidea_product.product.class', $config['product_class']);
@@ -36,36 +35,17 @@ class XideaProductExtension extends Extension
         $container->setAlias('xidea_product.product_director', $config['product_director']);
         $container->setAlias('xidea_product.product_manager', $config['product_manager']);
         $container->setAlias('xidea_product.product_loader', $config['product_loader']);
-        $container->setAlias('xidea_product.member_provider', $config['member_provider']);
-        $container->setAlias('xidea_product.route_handler', $config['route_handler']);
-        $container->setAlias('xidea_product.view_handler', $config['view_handler']);
+        $container->setAlias('xidea_product.user_provider', $config['user_provider']);
         
-        if (!empty($config['product_create'])) {
-            $this->loadCreate($config['product_create'], $container, $loader);
+        if (!empty($config['create'])) {
+            $this->loadCreate($config['create'], $container, $loader);
         }
-        
-        $this->loadTemplate($config, $container, $loader);
     }
     
     private function loadCreate(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $container->setParameter('xidea_product.create.form.type', $config['create_form']['type']);
-        $container->setParameter('xidea_product.create.form.name', $config['create_form']['name']);
-        $container->setParameter('xidea_product.create.form.validation_groups', $config['create_form']['validation_groups']);
-    }
-    
-    private function loadTemplate(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
-    {
-        $layouts = array();
-        foreach ($config['layouts'] as $name => $parameters) {
-            $layouts[$name] = $parameters;
-        }
-        $container->setParameter('xidea_product.layouts', $layouts);
-        
-        $templates = array();
-        foreach ($config['templates'] as $name => $parameters) {
-            $templates[$name] = $parameters;
-        }
-        $container->setParameter('xidea_product.templates', $templates);
+        $container->setParameter('xidea_product.product_create.form.type', $config['form']['type']);
+        $container->setParameter('xidea_product.product_create.form.name', $config['form']['name']);
+        $container->setParameter('xidea_product.product_create.form.validation_groups', $config['form']['validation_groups']);
     }
 }

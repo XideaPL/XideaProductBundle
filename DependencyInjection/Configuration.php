@@ -2,8 +2,9 @@
 
 namespace Xidea\Bundle\ProductBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder,
+    Symfony\Component\Config\Definition\ConfigurationInterface,
+    Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -28,14 +29,11 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('product_director')->defaultValue('xidea_product.product_director.default')->end()
                 ->scalarNode('product_manager')->defaultValue('xidea_product.product_manager.default')->end()
                 ->scalarNode('product_loader')->defaultValue('xidea_product.product_loader.default')->end()
-                ->scalarNode('member_provider')->defaultValue('xidea_product.member_provider.default')->end()
-                ->scalarNode('route_handler')->defaultValue('xidea_product.route_handler.default')->end()
-                ->scalarNode('view_handler')->defaultValue('xidea_product.view_handler.default')->end()
+                ->scalarNode('user_provider')->defaultValue('xidea_product.user_provider.default')->end()
             ->end()
         ;
 
         $this->addCreateSection($rootNode);
-        $this->addTemplateSection($rootNode);
 
         return $treeBuilder;
     }
@@ -44,11 +42,11 @@ class Configuration implements ConfigurationInterface
     {
         $node
             ->children()
-                ->arrayNode('product_create')
+                ->arrayNode('create')
                     ->addDefaultsIfNotSet()
                     ->canBeUnset()
                     ->children()
-                        ->arrayNode('create_form')
+                        ->arrayNode('form')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('type')->defaultValue('xidea_product_create')->end()
@@ -60,23 +58,6 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                     ->end()
-                ->end()
-            ->end();
-    }
-    
-    private function addTemplateSection(ArrayNodeDefinition $node)
-    {
-        $node
-            ->children()
-                ->arrayNode('layouts')
-                    ->useAttributeAsKey('name')
-                    ->prototype('scalar')->end()
-                    ->defaultValue(array())
-                ->end()
-                ->arrayNode('templates')
-                    ->useAttributeAsKey('name')
-                    ->prototype('array')->end()
-                    ->defaultValue(array())
                 ->end()
             ->end();
     }

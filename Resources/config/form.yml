@@ -1,14 +1,19 @@
 services:
-    xidea_product.create.form.factory:
-        class: Xidea\Bundle\ProductBundle\Form\Factory\FormFactory
-        arguments:
-            - @form.factory
-            - %xidea_product.create.form.name%
-            - %xidea_product.create.form.type%
-            - %xidea_product.create.form.validation_groups%
-    xidea_product.create.form.type:
+    xidea_product.product.form.type:
         class: Xidea\Bundle\ProductBundle\Form\Type\ProductType
         arguments:
             - %xidea_product.product.class%
         tags:
-            - { name: form.type, alias: "xidea_product_create" }
+            - { name: form.type, alias: "xidea_product" }
+    xidea_product.product_create.form.factory:
+        class: Xidea\Bundle\ProductBundle\Form\Factory\FormFactory
+        arguments:
+            - @form.factory
+            - %xidea_product.product_create.form.name%
+            - %xidea_product.product_create.form.type%
+            - %xidea_product.product_create.form.validation_groups%
+    xidea_product.product_create.form.handler:
+        class: Xidea\Bundle\ProductBundle\Form\Handler\ProductFormHandler
+        arguments:
+            - @xidea_product.product_create.form.factory
+            - @event_dispatcher

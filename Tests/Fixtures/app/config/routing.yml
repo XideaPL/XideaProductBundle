@@ -1,0 +1,3 @@
+xidea_product:
+    resource: "@XideaProductBundle/Resources/config/routing/product.yml"
+    prefix:   /app

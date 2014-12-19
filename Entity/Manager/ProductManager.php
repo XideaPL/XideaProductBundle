@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Doctrine\ORM\EntityManager;
 
-use Xidea\Component\Product\Model\Manager\ProductManagerInterface,
+use Xidea\Component\Product\Manager\ProductManagerInterface,
     Xidea\Component\Product\Model\ProductInterface;
 
 use Xidea\Bundle\ProductBundle\ProductEvents;

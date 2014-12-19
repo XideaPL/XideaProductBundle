@@ -11,11 +11,8 @@ namespace Xidea\Bundle\ProductBundle\Entity\Loader;
 
 use Doctrine\ORM\EntityManager;
 
-use Knp\Component\Pager\Paginator;
-
-use Xidea\Component\Product\Loader\ProductLoaderInterface;
-
-use Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepositoryInterface;
+use Xidea\Component\Product\Loader\ProductLoaderInterface,
+    Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepositoryInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -27,21 +24,15 @@ class ProductLoader implements ProductLoaderInterface
      */
     protected $productRepository;
     
-    /*
-     * @var Paginator
-     */
-    protected $paginator;
-    
     /**
      * Constructs a comment repository.
      *
      * @param string $class The class
      * @param EntityManager The entity manager
      */
-    public function __construct(ProductRepositoryInterface $productRepository, Paginator $paginator)
+    public function __construct(ProductRepositoryInterface $productRepository)
     {
         $this->productRepository = $productRepository;
-        $this->paginator = $paginator;
     }
 
     /**

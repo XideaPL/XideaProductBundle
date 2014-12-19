@@ -5,13 +5,8 @@
         {#{{ form_errors(form.captcha) }}#}
     </div>
     <div class="form-horizontal">
-        <div class="form-group">
-            {{ form_label(form.body) }}
-            <div>
-                {{ form_widget(form.body) }}
-                <div class="error-message">{{ form_errors(form.body) }}</div>
-            </div>
-        </div>
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
     </div>
     <button class="btn btn-lg btn-success btn-block" type="submit">{{ 'product_create.submit'|trans({}, 'form') }}</button>
     <p>

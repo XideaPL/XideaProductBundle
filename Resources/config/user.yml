@@ -1,0 +1,8 @@
+parameters:
+    xidea_product.user_provider.class: Xidea\Bundle\ProductBundle\Provider\UserProvider
+  
+services:
+    xidea_product.user_provider.default:
+        class: %xidea_product.user_provider.class%
+        arguments:
+            - @security.context

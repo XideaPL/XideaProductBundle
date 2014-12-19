@@ -1,11 +1,11 @@
 product:
-    label: Zgłoszenie
+    label: Produkt
     body: Treść zgłoszenia
     createdAt: Zarejestrowano
     updatedAt: Zmodyfikowano
     
 product_create:
-    title: Nowe zgłoszenie
+    title: Nowy produkt
     route:
       name: Nowe zgłoszenie
       

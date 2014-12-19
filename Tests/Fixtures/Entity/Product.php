@@ -7,11 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle\Controller\Product;
+namespace Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity;
+
+use Xidea\Bundle\ProductBundle\Entity\AbstractProduct;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ViewController extends AbstractViewController
+class Product extends AbstractProduct
 {
 }

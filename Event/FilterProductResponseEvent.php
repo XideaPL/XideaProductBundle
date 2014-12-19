@@ -9,9 +9,10 @@
 
 namespace Xidea\Bundle\ProductBundle\Event;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Xidea\Bundle\ProductBundle\Model\ProductInterface;
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
+
+use Xidea\Component\Product\Model\ProductInterface;
 
 /**
  *

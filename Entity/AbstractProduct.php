@@ -9,7 +9,7 @@
 
 namespace Xidea\Bundle\ProductBundle\Entity;
 
-use Xidea\Bundle\ProductBundle\Model\AbstractProduct as BaseAbstractProduct;
+use Xidea\Component\Product\Model\AbstractProduct as BaseAbstractProduct;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
