@@ -1,7 +1,7 @@
 parameters:
-    xidea_product.product_repository.default.class: Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepository
-    xidea_product.product_loader.default.class: Xidea\Bundle\ProductBundle\Entity\Loader\ProductLoader
-    xidea_product.product_manager.default.class: Xidea\Bundle\ProductBundle\Entity\Manager\ProductManager
+    xidea_product.product_repository.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepository
+    xidea_product.product_loader.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader\ProductLoader
+    xidea_product.product_manager.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Manager\ProductManager
   
 services:
     xidea_product.product_repository.default:

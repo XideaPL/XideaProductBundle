@@ -1,3 +1,0 @@
-Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\Product:
-    type: entity
-    table: product
