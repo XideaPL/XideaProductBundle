@@ -16,7 +16,8 @@ use Doctrine\ORM\EntityManager;
 use Xidea\Component\Product\Manager\ProductManagerInterface,
     Xidea\Component\Product\Model\ProductInterface;
 
-use Xidea\Bundle\ProductBundle\ProductEvents;
+use Xidea\Bundle\ProductBundle\ProductEvents,
+    Xidea\Bundle\ProductBundle\Event\ProductEvent;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -55,7 +56,7 @@ class ProductManager implements ProductManagerInterface
 
         $this->entityManager->flush();
         
-        $this->eventDispatcher->dispatch(ProductEvents::PRE_SAVE, new ProductEvent($product));
+        $this->eventDispatcher->dispatch(ProductEvents::POST_SAVE, new ProductEvent($product));
 
         return $product->getId();
     }

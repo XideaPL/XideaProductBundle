@@ -16,29 +16,27 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 abstract class ControllerTestCase extends WebTestCase
 {
-    /*
-     * @var \Symfony\Bundle\FrameworkBundle\Client
-     */
-    protected $client;
-    
-    public function setUp()
+    protected function loadAdminUser($client)
     {
-        $this->client = static::createClient();
+        $userLoader = $client->getContainer()->get('xidea_user.user_loader');
+        return $userLoader->loadOneByUsername('admin');
+        
     }
-    
     protected function logIn()
     {
-        $session = $this->client->getContainer()->get('session');
-        $userLoader = $this->client->getContainer()->get('xidea_user.user_loader');
-
+        $client = static::createClient();
+        $session = $client->getContainer()->get('session');
+        
         $firewall = 'app';
-        $user = $userLoader->loadOneByUsername('admin');
+        $user = $this->loadAdminUser($client);
         $token = new UsernamePasswordToken($user, $user->getPassword(), $firewall, $user->getRoles());
         $session->set('_security_'.$firewall, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $client->getCookieJar()->set($cookie);
+        
+        return $client;
     }
 }
 

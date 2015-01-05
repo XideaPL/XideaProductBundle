@@ -18,6 +18,13 @@ Xidea\Bundle\ProductBundle\Entity\AbstractProduct:
             column: updated_at
             type: datetime
             nullable: true
+    manyToOne:
+        author:
+            targetEntity: Xidea\Component\Product\Model\AuthorInterface
+            joinColumn:
+                name: author_id
+                referencedColumnName: id
+                nullable: false
     lifecycleCallbacks:
         prePersist: [ prePersist ]
         preUpdate: [ preUpdate ]

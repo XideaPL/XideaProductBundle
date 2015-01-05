@@ -28,21 +28,26 @@ class XideaProductExtension extends Extension
         $loader->load('user.yml');
         $loader->load('controller.yml');
         $loader->load('form.yml');
-
-        $container->setParameter('xidea_product.product.class', $config['product_class']);
-        $container->setAlias('xidea_product.product_factory', $config['product_factory']);
-        $container->setAlias('xidea_product.product_builder', $config['product_builder']);
-        $container->setAlias('xidea_product.product_director', $config['product_director']);
-        $container->setAlias('xidea_product.product_manager', $config['product_manager']);
-        $container->setAlias('xidea_product.product_loader', $config['product_loader']);
+        
+        $this->loadProductSection($config['product'], $container, $loader);
+    }
+    
+    private function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    {
+        $container->setParameter('xidea_product.product.class', $config['class']);
+        $container->setAlias('xidea_product.product_factory', $config['factory']);
+        $container->setAlias('xidea_product.product_builder', $config['builder']);
+        $container->setAlias('xidea_product.product_director', $config['director']);
+        $container->setAlias('xidea_product.product_manager', $config['manager']);
+        $container->setAlias('xidea_product.product_loader', $config['loader']);
         $container->setAlias('xidea_product.user_provider', $config['user_provider']);
         
         if (!empty($config['create'])) {
-            $this->loadCreate($config['create'], $container, $loader);
+            $this->loadProductCreateSection($config['create'], $container, $loader);
         }
     }
     
-    private function loadCreate(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    private function loadProductCreateSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
         $container->setParameter('xidea_product.product_create.form.type', $config['form']['type']);
         $container->setParameter('xidea_product.product_create.form.name', $config['form']['name']);

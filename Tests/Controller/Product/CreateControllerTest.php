@@ -15,13 +15,9 @@ class CreateControllerTest extends ControllerTestCase
 {
     public function testCreateAction()
     {
-        $this->logIn();
-        /*
-         * @var \Symfony\Component\Routing\RouterInterface
-         */
-        $router = $this->client->getContainer()->get('router');
+        $client = $this->logIn();
 
-        $crawler = $this->client->request('GET', $router->generate('xidea_product_create'));
+        $crawler = $client->request('GET', $client->getContainer()->get('router')->generate('xidea_product_create'));
 
         $this->assertGreaterThan(
             0,

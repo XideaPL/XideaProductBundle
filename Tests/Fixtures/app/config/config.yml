@@ -64,24 +64,26 @@ doctrine:
         resolve_target_entities:
             Xidea\Component\User\Model\UserInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
             Xidea\Component\Product\Model\ProductInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\Product
-            Xidea\Bundle\ProductBundle\Model\AuthorInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
+            Xidea\Component\Product\Model\AuthorInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
             
 xidea_user:
-    user_class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
-    user_factory: xidea_user.user_factory.default
-    user_manager: xidea_user.user_manager.default
-    user_loader: xidea_user.user_loader.default
-    create:
-        form:
-            type: xidea_user_create
-            name: user_create
+    user:
+        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
+        factory: xidea_user.user_factory.default
+        manager: xidea_user.user_manager.default
+        loader: xidea_user.user_loader.default
+        create:
+            form:
+                type: xidea_user
+                name: user_create
             
 xidea_product:
-    product_class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\Product
-    product_factory: xidea_product.product_factory.default
-    product_manager: xidea_product.product_manager.default
-    product_loader: xidea_product.product_loader.default
-    create:
-        form:
-            type: xidea_product
-            name: product_create
+    product:
+        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\Product
+        factory: xidea_product.product_factory.default
+        manager: xidea_product.product_manager.default
+        loader: xidea_product.product_loader.default
+        create:
+            form:
+                type: xidea_product
+                name: product_create

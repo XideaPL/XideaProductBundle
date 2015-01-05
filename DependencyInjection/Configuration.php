@@ -21,39 +21,39 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('xidea_product');
 
-        $rootNode
-            ->children()
-                ->scalarNode('product_class')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('product_factory')->defaultValue('xidea_product.product_factory.default')->end()
-                ->scalarNode('product_builder')->defaultValue('xidea_product.product_builder.default')->end()
-                ->scalarNode('product_director')->defaultValue('xidea_product.product_director.default')->end()
-                ->scalarNode('product_manager')->defaultValue('xidea_product.product_manager.default')->end()
-                ->scalarNode('product_loader')->defaultValue('xidea_product.product_loader.default')->end()
-                ->scalarNode('user_provider')->defaultValue('xidea_product.user_provider.default')->end()
-            ->end()
-        ;
-
-        $this->addCreateSection($rootNode);
+        $this->addProductSection($rootNode);
 
         return $treeBuilder;
     }
     
-    private function addCreateSection(ArrayNodeDefinition $node)
+    private function addProductSection(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->arrayNode('create')
+                ->arrayNode('product')
                     ->addDefaultsIfNotSet()
-                    ->canBeUnset()
                     ->children()
-                        ->arrayNode('form')
+                        ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('factory')->defaultValue('xidea_product.product_factory.default')->end()
+                        ->scalarNode('builder')->defaultValue('xidea_product.product_builder.default')->end()
+                        ->scalarNode('director')->defaultValue('xidea_product.product_director.default')->end()
+                        ->scalarNode('manager')->defaultValue('xidea_product.product_manager.default')->end()
+                        ->scalarNode('loader')->defaultValue('xidea_product.product_loader.default')->end()
+                        ->scalarNode('user_provider')->defaultValue('xidea_product.user_provider.default')->end()
+                        ->arrayNode('create')
                             ->addDefaultsIfNotSet()
+                            ->canBeUnset()
                             ->children()
-                                ->scalarNode('type')->defaultValue('xidea_product_create')->end()
-                                ->scalarNode('name')->defaultValue('xidea_product_create_form')->end()
-                                ->arrayNode('validation_groups')
-                                    ->prototype('scalar')->end()
-                                    ->defaultValue(array())
+                                ->arrayNode('form')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('type')->defaultValue('xidea_product_create')->end()
+                                        ->scalarNode('name')->defaultValue('xidea_product_create_form')->end()
+                                        ->arrayNode('validation_groups')
+                                            ->prototype('scalar')->end()
+                                            ->defaultValue(array())
+                                        ->end()
+                                    ->end()
                                 ->end()
                             ->end()
                         ->end()
