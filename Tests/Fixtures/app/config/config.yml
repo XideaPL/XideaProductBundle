@@ -46,29 +46,23 @@ doctrine:
         # path:     "%database_path%"
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: false
-        mappings:
-            XideaUserBundle:
-                type: yml
-                dir: ~
-                prefix: Xidea\Bundle\UserBundle\Entity
-            XideaProductBundle:
-                type: yml
-                dir: ~
-                prefix: Xidea\Bundle\ProductBundle\Entity
-            XideaProductBundleTest:
-                type: yml
-                dir: %kernel.root_dir%/config/doctrine
-                prefix: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity
-                is_bundle: false
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    XideaProductBundleTest:
+                        type: yml
+                        dir: %kernel.root_dir%/config/doctrine/model
+                        prefix: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model
+                        is_bundle: false
         resolve_target_entities:
-            Xidea\Component\User\Model\UserInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
-            Xidea\Component\Product\Model\ProductInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\Product
-            Xidea\Component\Product\Model\AuthorInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
+            Xidea\Component\User\Model\UserInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
+            Xidea\Component\Product\Model\AuthorInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
+            Xidea\Component\Product\Model\ProductInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product
             
 xidea_user:
     user:
-        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User
+        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
         factory: xidea_user.user_factory.default
         manager: xidea_user.user_manager.default
         loader: xidea_user.user_loader.default
@@ -79,7 +73,7 @@ xidea_user:
             
 xidea_product:
     product:
-        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\Product
+        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product
         factory: xidea_product.product_factory.default
         manager: xidea_product.product_manager.default
         loader: xidea_product.product_loader.default

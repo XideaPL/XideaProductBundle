@@ -9,7 +9,7 @@
 
 namespace Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity;
 
-use Xidea\Bundle\ProductBundle\Entity\AbstractProduct;
+use Xidea\Component\Product\Model\AbstractProduct;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
