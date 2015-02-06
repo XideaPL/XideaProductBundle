@@ -1,21 +1,21 @@
 parameters:
-    xidea_product.product_repository.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepository
-    xidea_product.product_loader.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader\ProductLoader
-    xidea_product.product_manager.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Manager\ProductManager
+    xidea_product.product.repository.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepository
+    xidea_product.product.loader.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader\ProductLoader
+    xidea_product.product.manager.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Manager\ProductManager
   
 services:
-    xidea_product.product_repository.default:
-        class: %xidea_product.product_repository.default.class%
+    xidea_product.product.repository.default:
+        class: %xidea_product.product.repository.default.class%
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
         arguments:
             - %xidea_product.product.class%
-    xidea_product.product_loader.default:
-        class: %xidea_product.product_loader.default.class%
+    xidea_product.product.loader.default:
+        class: %xidea_product.product.loader.default.class%
         arguments:
-            - @xidea_product.product_repository.default
-    xidea_product.product_manager.default:
-        class: %xidea_product.product_manager.default.class%
+            - @xidea_product.product.repository.default
+    xidea_product.product.manager.default:
+        class: %xidea_product.product.manager.default.class%
         arguments:
             - @doctrine.orm.entity_manager
             - @event_dispatcher

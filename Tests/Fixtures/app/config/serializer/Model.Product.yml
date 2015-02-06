@@ -1,0 +1,3 @@
+Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product:
+    exclusion_policy: ALL
+    xml_root_name: product

@@ -20,6 +20,6 @@ class User extends AbstractUser implements AuthorInterface
 {
     public function getName()
     {
-        parent::getUsername();
+        return $this->getUsername();
     }
 }

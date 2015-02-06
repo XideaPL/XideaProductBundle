@@ -1,14 +1,21 @@
 product:
     label: Produkt
     body: Treść zgłoszenia
-    createdAt: Zarejestrowano
-    updatedAt: Zmodyfikowano
-    
-product_create:
-    title: Nowy produkt
-    route:
-      name: Nowe zgłoszenie
-      
-product_list:
-    title: Zgłoszenia
-      
+    created_at: Dodano
+    updated_at: Zmodyfikowano
+    author:
+        name: Autor
+
+product_form:
+    create:
+        submit: Utwórz
+        
+product_action:
+    list:
+        title: Produkty
+    show:
+        title: %product_name%
+        details:
+            title: Szczegóły produktu
+    create:
+        title: Nowy produkt

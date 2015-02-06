@@ -1,19 +1,19 @@
 parameters:
-    xidea_product.product_factory.class: Xidea\Component\Product\Factory\ProductFactory
-    xidea_product.product_builder.class: Xidea\Component\Product\Builder\ProductBuilder
-    xidea_product.product_director.class: Xidea\Component\Product\Builder\ProductDirector
+    xidea_product.product.factory.default.class: Xidea\Component\Product\Factory\ProductFactory
+    xidea_product.product.builder.default.class: Xidea\Component\Product\Builder\ProductBuilder
+    xidea_product.product.director.default.class: Xidea\Component\Product\Builder\ProductDirector
   
 services:
-    xidea_product.product_factory.default:
-        class: %xidea_product.product_factory.class%
+    xidea_product.product.factory.default:
+        class: %xidea_product.product.factory.default.class%
         arguments:
             - %xidea_product.product.class%
-    xidea_product.product_builder.default:
-        class: %xidea_product.product_builder.class%
+    xidea_product.product.builder.default:
+        class: %xidea_product.product.builder.default.class%
         arguments:
-            - @xidea_product.product_factory
-    xidea_product.product_director.default:
-        class: %xidea_product.product_director.class%
+            - @xidea_product.product.factory
+    xidea_product.product.director.default:
+        class: %xidea_product.product.director.default.class%
         arguments:
-            - @xidea_product.product_builder
-            - @xidea_product.user_provider
+            - @xidea_product.product.builder
+            - @xidea_product.user.provider

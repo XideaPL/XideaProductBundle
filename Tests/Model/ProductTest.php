@@ -10,7 +10,7 @@
 namespace Xidea\Bundle\ProductBundle\Tests\Model;
 
 use Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product,
-    Xidea\Bundle\ProductBundle\Tests\Fixtures\Entity\User;
+    Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>

@@ -37,13 +37,12 @@ class ProductType extends AbstractType
     {
         $builder
                 ->add('name', null, array(
-                    'label' => 'product.name',
-                    'translation_domain' => 'form'
+                    'label' => 'product.name'
                 ))
                 ->add('description', null, array(
-                    'label' => 'product.description',
-                    'translation_domain' => 'form'
+                    'label' => 'product.description'
                 ))
+                ->add('save', 'submit', array('label' => 'product_form.submit'))
         ;
     }
 

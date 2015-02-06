@@ -41,7 +41,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $data = $this->loadData();
 
-        $productManager = $this->container->get('xidea_product.product_manager');
+        $productManager = $this->container->get('xidea_product.product.manager');
         
         foreach($data as $product) {
             $productManager->save($product);
@@ -63,7 +63,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function getProductFactory()
     {
-        return $this->container->get('xidea_product.product_factory');
+        return $this->container->get('xidea_product.product.factory');
     }
     
     /**

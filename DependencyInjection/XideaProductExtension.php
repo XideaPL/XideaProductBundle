@@ -7,50 +7,64 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
+use Xidea\Bundle\BaseBundle\DependencyInjection\AbstractExtension;
+
 /**
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class XideaProductExtension extends Extension
+class XideaProductExtension extends AbstractExtension
 {
     /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        list($config, $loader) = $this->setUp($configs, new Configuration($this->getAlias()), $container);
+        
+        $loader->load('base.yml');
         $loader->load('product.yml');
         $loader->load('product_orm.yml');
         $loader->load('user.yml');
         $loader->load('controller.yml');
         $loader->load('form.yml');
         
+        $this->loadConfigurationSection($config, $container, $loader);
+        
         $this->loadProductSection($config['product'], $container, $loader);
+        
+        if(isset($config['template']))
+            $this->loadTemplateSection($config['template'], $container, $loader);
     }
     
-    private function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    protected function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
         $container->setParameter('xidea_product.product.class', $config['class']);
-        $container->setAlias('xidea_product.product_factory', $config['factory']);
-        $container->setAlias('xidea_product.product_builder', $config['builder']);
-        $container->setAlias('xidea_product.product_director', $config['director']);
-        $container->setAlias('xidea_product.product_manager', $config['manager']);
-        $container->setAlias('xidea_product.product_loader', $config['loader']);
-        $container->setAlias('xidea_product.user_provider', $config['user_provider']);
+        $container->setAlias('xidea_product.product.factory', $config['factory']);
+        $container->setAlias('xidea_product.product.builder', $config['builder']);
+        $container->setAlias('xidea_product.product.director', $config['director']);
+        $container->setAlias('xidea_product.product.manager', $config['manager']);
+        $container->setAlias('xidea_product.product.loader', $config['loader']);
+        $container->setAlias('xidea_product.user.provider', $config['user_provider']);
         
-        if (!empty($config['create'])) {
-            $this->loadProductCreateSection($config['create'], $container, $loader);
+        if (!empty($config['form'])) {
+            $this->loadProductFormSection($config['form'], $container, $loader);
         }
     }
     
-    private function loadProductCreateSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    protected function loadProductFormSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $container->setParameter('xidea_product.product_create.form.type', $config['form']['type']);
-        $container->setParameter('xidea_product.product_create.form.name', $config['form']['name']);
-        $container->setParameter('xidea_product.product_create.form.validation_groups', $config['form']['validation_groups']);
+        $container->setAlias('xidea_product.product.form.create.factory', $config['create']['factory']);
+        $container->setAlias('xidea_product.product.form.create.handler', $config['create']['handler']);
+        
+        $container->setParameter('xidea_product.product.form.create.type', $config['create']['type']);
+        $container->setParameter('xidea_product.product.form.create.name', $config['create']['name']);
+        $container->setParameter('xidea_product.product.form.create.validation_groups', $config['create']['validation_groups']);
+    }
+    
+    protected function getConfigurationDirectory()
+    {
+        return __DIR__.'/../Resources/config';
     }
 }

@@ -12,7 +12,7 @@ namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader;
 use Doctrine\ORM\EntityManager;
 
 use Xidea\Component\Product\Loader\ProductLoaderInterface,
-    Xidea\Bundle\ProductBundle\Entity\Repository\ProductRepositoryInterface;
+    Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepositoryInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -57,5 +57,13 @@ class ProductLoader implements ProductLoaderInterface
     public function loadBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null)
     {
         return $this->productRepository->findBy($criteria, $orderBy, $limit, $offset);
+    }
+    
+    /*
+     * {@inheritdoc}
+     */
+    public function loadOneBy(array $criteria, array $orderBy = array())
+    {
+        return $this->productRepository->findOneBy($criteria, $orderBy);
     }
 }

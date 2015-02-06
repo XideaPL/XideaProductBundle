@@ -1,5 +1,6 @@
 Xidea\Component\Product\Model\AbstractProduct:
     type: mappedSuperclass
+    repositoryClass: Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepository
     id:
         id:
             type: integer

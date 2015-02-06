@@ -21,7 +21,6 @@ class ProductRepository extends EntityRepository implements ProductRepositoryInt
     public function findByAuthorQB(AuthorInterface $author)
     {
         $qb = $this->createQueryBuilder('p');
-        
         $qb
             ->select(array(
                 'p',

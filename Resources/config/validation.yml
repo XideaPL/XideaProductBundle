@@ -1,3 +1,8 @@
+Xidea\Component\Product\Model\AbstractProduct:
+    properties:
+        name:
+            - NotBlank: {}
+
 Xidea\Bundle\UserBundle\Model\AbstractUser:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
