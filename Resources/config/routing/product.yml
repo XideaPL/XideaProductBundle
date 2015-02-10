@@ -3,11 +3,11 @@ xidea_product_list:
     defaults: { _controller: xidea_product.controller.list:listAction }
  
 xidea_product_show:
-    pattern:  /products/product/{id}
+    pattern:  /products/{id}
     defaults: { _controller: xidea_product.controller.show:showAction }
     requirements:
         id:  \d+
     
 xidea_product_create:
-    pattern:  /products/product/create
+    pattern:  /products/create
     defaults: { _controller: xidea_product.controller.create:createAction }

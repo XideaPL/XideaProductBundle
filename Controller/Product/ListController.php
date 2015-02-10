@@ -40,9 +40,4 @@ class ListController extends AbstractListController
     {
         return;
     }
-    
-    protected function onListView(array $parameters = array(), $request = null)
-    {
-        return $this->render($this->getTemplateConfiguration()->getTemplate('list'), $parameters);
-    }
 }

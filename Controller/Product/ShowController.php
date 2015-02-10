@@ -48,10 +48,4 @@ class ShowController extends AbstractShowController
     {
         return;
     }
-
-    protected function onShowView(array $parameters = array(), $request = null)
-    {
-        return $this->render($this->getTemplateConfiguration()->getTemplate('show'), $parameters);
-    }
-
 }

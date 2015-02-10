@@ -28,9 +28,7 @@ class Configuration extends AbstractConfiguration
         $treeBuilder = parent::getConfigTreeBuilder();
         $rootNode = $treeBuilder->root($this->alias);
         
-        $this->addConfigurationSection($rootNode);
         $this->addProductSection($rootNode);
-        $this->addTemplateSection($rootNode);
 
         return $treeBuilder;
     }
@@ -38,24 +36,6 @@ class Configuration extends AbstractConfiguration
     public function getDefaultTemplateNamespace()
     {
         return 'XideaProductBundle';
-    }
-    
-    public function getDefaultTemplates()
-    {
-        return array(
-            'list' => array(
-                'path' => 'Product\List:list'
-            ),
-            'show' => array(
-                'path' => 'Product\Show:show'
-            ),
-            'create' => array(
-                'path' => 'Product\Create:create'
-            ),
-            'create_form' => array(
-                'path' => 'Product\Create:create_form'
-            )
-        );
     }
     
     protected function addProductSection(ArrayNodeDefinition $node)
@@ -66,6 +46,7 @@ class Configuration extends AbstractConfiguration
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('factory')->defaultValue('xidea_product.product.factory.default')->end()
                         ->scalarNode('builder')->defaultValue('xidea_product.product.builder.default')->end()
                         ->scalarNode('director')->defaultValue('xidea_product.product.director.default')->end()
@@ -91,6 +72,20 @@ class Configuration extends AbstractConfiguration
                                 ->end()
                             ->end()
                         ->end()
+                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), array(
+                            'list' => array(
+                                'path' => 'Product\List:list'
+                            ),
+                            'show' => array(
+                                'path' => 'Product\Show:show'
+                            ),
+                            'create' => array(
+                                'path' => 'Product\Create:create'
+                            ),
+                            'create_form' => array(
+                                'path' => 'Product\Create:create_form'
+                            )
+                        )))
                     ->end()
                 ->end()
             ->end();

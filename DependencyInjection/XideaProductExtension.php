@@ -22,25 +22,20 @@ class XideaProductExtension extends AbstractExtension
     public function load(array $configs, ContainerBuilder $container)
     {
         list($config, $loader) = $this->setUp($configs, new Configuration($this->getAlias()), $container);
-        
-        $loader->load('base.yml');
+
         $loader->load('product.yml');
         $loader->load('product_orm.yml');
         $loader->load('user.yml');
         $loader->load('controller.yml');
         $loader->load('form.yml');
-        
-        $this->loadConfigurationSection($config, $container, $loader);
-        
+
         $this->loadProductSection($config['product'], $container, $loader);
-        
-        if(isset($config['template']))
-            $this->loadTemplateSection($config['template'], $container, $loader);
     }
     
     protected function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
         $container->setParameter('xidea_product.product.class', $config['class']);
+        $container->setAlias('xidea_product.product.configuration', $config['configuration']);
         $container->setAlias('xidea_product.product.factory', $config['factory']);
         $container->setAlias('xidea_product.product.builder', $config['builder']);
         $container->setAlias('xidea_product.product.director', $config['director']);
@@ -50,6 +45,10 @@ class XideaProductExtension extends AbstractExtension
         
         if (!empty($config['form'])) {
             $this->loadProductFormSection($config['form'], $container, $loader);
+        }
+        
+        if(isset($config['template'])) {
+            $this->loadTemplateSection(sprintf('%s.%s', $this->getAlias(), 'product'), $config['template'], $container, $loader);
         }
     }
     

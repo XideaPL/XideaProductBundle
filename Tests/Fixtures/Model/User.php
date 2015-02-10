@@ -9,14 +9,14 @@
 
 namespace Xidea\Bundle\ProductBundle\Tests\Fixtures\Model;
 
-use Xidea\Bundle\UserBundle\Model\AbstractUser;
+use Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser;
 
 use Xidea\Component\Product\Model\AuthorInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class User extends AbstractUser implements AuthorInterface
+class User extends AbstractAdvancedUser implements AuthorInterface
 {
     public function getName()
     {

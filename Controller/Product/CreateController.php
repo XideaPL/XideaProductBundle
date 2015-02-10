@@ -70,15 +70,4 @@ class CreateController extends AbstractCreateController
     {
         $this->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($object, $request, $response));
     }
-
-    protected function onCreateView(array $parameters = array(), $request = null)
-    {
-        return $this->render($this->getTemplateConfiguration()->getTemplate('create'), $parameters);
-    }
-
-    protected function onCreateFormView(array $parameters = array(), $request = null)
-    {
-        return $this->render($this->getTemplateConfiguration()->getTemplate('create_form'), $parameters);
-    }
-
 }

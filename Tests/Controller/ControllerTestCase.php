@@ -18,7 +18,7 @@ abstract class ControllerTestCase extends WebTestCase
 {
     protected function loadAdminUser($client)
     {
-        $userLoader = $client->getContainer()->get('xidea_user.user_loader');
+        $userLoader = $client->getContainer()->get('xidea_user.user.loader');
         return $userLoader->loadOneByUsername('admin');
         
     }

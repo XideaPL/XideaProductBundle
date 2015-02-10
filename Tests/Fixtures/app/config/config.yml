@@ -63,19 +63,23 @@ doctrine:
 xidea_user:
     user:
         class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
-        factory: xidea_user.user_factory.default
-        manager: xidea_user.user_manager.default
-        loader: xidea_user.user_loader.default
-        create:
-            form:
+        configuration: xidea_user.user.configuration.default
+        factory: xidea_user.user.factory.default
+        manager: xidea_user.user.manager.default
+        loader: xidea_user.user.loader.default
+        form:
+            create:
+                factory: xidea_user.user.form.create.factory.default
+                handler: xidea_user.user.form.create.handler.default
                 type: xidea_user
                 name: user_create
+        template:
+            configuration: xidea_user.user.template.configuration.default
             
 xidea_product:
-    configuration: xidea_product.configuration.default
-    template_configuration: xidea_product.template_configuration.default
     product:
         class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product
+        configuration: xidea_product.product.configuration.default
         factory: xidea_product.product.factory.default
         manager: xidea_product.product.manager.default
         loader: xidea_product.product.loader.default
@@ -85,3 +89,5 @@ xidea_product:
                 handler: xidea_product.product.form.create.handler.default
                 type: xidea_product
                 name: product_create
+        template:
+            configuration: xidea_product.product.template.configuration.default

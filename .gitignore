@@ -37,5 +37,6 @@
 # Dev
 nbproject/
 Tests/bootstrap.php
+Tests/Fixtures/app/DoctrineMigrations
 Tests/Fixtures/app/cache
 Tests/Fixtures/app/logs

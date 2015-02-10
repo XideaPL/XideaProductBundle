@@ -7,7 +7,7 @@ services:
     xidea_product.controller.list:
         class: %xidea_product.controller.list.class%
         arguments:
-            - @xidea_product.configuration
+            - @xidea_product.product.configuration
             - @xidea_product.product.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
@@ -15,7 +15,7 @@ services:
     xidea_product.controller.show:
         class: %xidea_product.controller.show.class%
         arguments:
-            - @xidea_product.configuration
+            - @xidea_product.product.configuration
             - @xidea_product.product.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
@@ -23,7 +23,7 @@ services:
     xidea_product.controller.create:
         class: %xidea_product.controller.create.class%
         arguments:
-            - @xidea_product.configuration
+            - @xidea_product.product.configuration
             - @xidea_product.product.director
             - @xidea_product.product.manager
             - @xidea_product.product.form.create.handler
