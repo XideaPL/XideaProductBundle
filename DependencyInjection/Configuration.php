@@ -2,9 +2,7 @@
 
 namespace Xidea\Bundle\ProductBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder,
-    Symfony\Component\Config\Definition\ConfigurationInterface,
-    Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 use Xidea\Bundle\BaseBundle\DependencyInjection\AbstractConfiguration;
 
