@@ -1,0 +1,21 @@
+parameters:
+    xidea_product.manufacturer.repository.default.class: Doctrine\ORM\EntityRepository
+    xidea_product.manufacturer.loader.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader\ManufacturerLoader
+    xidea_product.manufacturer.manager.default.class: Xidea\Bundle\ProductBundle\Doctrine\ORM\Manager\ManufacturerManager
+  
+services:
+    xidea_product.manufacturer.repository.default:
+        class: %xidea_product.manufacturer.repository.default.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %xidea_product.manufacturer.class%
+    xidea_product.manufacturer.loader.default:
+        class: %xidea_product.manufacturer.loader.default.class%
+        arguments:
+            - @xidea_product.manufacturer.repository.default
+    xidea_product.manufacturer.manager.default:
+        class: %xidea_product.manufacturer.manager.default.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher

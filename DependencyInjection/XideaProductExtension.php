@@ -23,11 +23,14 @@ class XideaProductExtension extends AbstractExtension
 
         $loader->load('product.yml');
         $loader->load('product_orm.yml');
+        $loader->load('manufacturer.yml');
+        $loader->load('manufacturer_orm.yml');
         $loader->load('user.yml');
         $loader->load('controller.yml');
         $loader->load('form.yml');
 
         $this->loadProductSection($config['product'], $container, $loader);
+        $this->loadManufacturerSection($config['manufacturer'], $container, $loader);
     }
     
     protected function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
@@ -58,6 +61,19 @@ class XideaProductExtension extends AbstractExtension
         $container->setParameter('xidea_product.product.form.create.type', $config['create']['type']);
         $container->setParameter('xidea_product.product.form.create.name', $config['create']['name']);
         $container->setParameter('xidea_product.product.form.create.validation_groups', $config['create']['validation_groups']);
+    }
+    
+    protected function loadManufacturerSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
+    {
+        $container->setParameter('xidea_product.manufacturer.class', $config['class']);
+        $container->setAlias('xidea_product.manufacturer.configuration', $config['configuration']);
+        $container->setAlias('xidea_product.manufacturer.factory', $config['factory']);
+        $container->setAlias('xidea_product.manufacturer.loader', $config['manager']);
+        $container->setAlias('xidea_product.manufacturer.manager', $config['manager']);
+        
+        if(isset($config['template'])) {
+            $this->loadTemplateSection(sprintf('%s.%s', $this->getAlias(), 'manufacturer'), $config['template'], $container, $loader);
+        }
     }
     
     protected function getConfigurationDirectory()

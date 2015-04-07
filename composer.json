@@ -12,6 +12,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=5.4.0",
         "symfony/symfony": "2.6.*",
         "twig/twig": "~1.12",
         "xideapl/product": "dev-master@dev",

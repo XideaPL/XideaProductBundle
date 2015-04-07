@@ -27,6 +27,7 @@ class Configuration extends AbstractConfiguration
         $rootNode = $treeBuilder->root($this->alias);
         
         $this->addProductSection($rootNode);
+        $this->addManufacturerSection($rootNode);
 
         return $treeBuilder;
     }
@@ -84,6 +85,24 @@ class Configuration extends AbstractConfiguration
                                 'path' => 'Product\Create:create_form'
                             )
                         )))
+                    ->end()
+                ->end()
+            ->end();
+    }
+    
+    protected function addManufacturerSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('manufacturer')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('factory')->defaultValue('xidea_product.manufacturer.factory.default')->end()
+                        ->scalarNode('manager')->defaultValue('xidea_product.manufacturer.manager.default')->end()
+                        ->scalarNode('loader')->defaultValue('xidea_product.manufacturer.loader.default')->end()
+                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), []))
                     ->end()
                 ->end()
             ->end();

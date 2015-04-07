@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>
  */
-class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadManufacturerData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -41,10 +41,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $data = $this->loadData();
 
-        $productManager = $this->container->get('xidea_product.product.manager');
+        $manufacturerManager = $this->container->get('xidea_product.manufacturer.manager');
         
-        foreach($data as $product) {
-            $productManager->save($product);
+        foreach($data as $manufacturer) {
+            $manufacturerManager->save($manufacturer);
         }
     }
     
@@ -53,17 +53,17 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 2;
+        return 1;
     }
     
     /**
-     * Returns a product factory.
+     * Returns a manufacturer factory.
      * 
-     * @return \Xidea\Bundle\ProductBundle\Model\ProductFactory The product factory
+     * @return \Xidea\Bundle\ProductBundle\Model\ProductFactory The manufacturer factory
      */
-    protected function getProductFactory()
+    protected function getManufacturerFactory()
     {
-        return $this->container->get('xidea_product.product.factory');
+        return $this->container->get('xidea_product.manufacturer.factory');
     }
     
     /**
@@ -73,25 +73,19 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function loadData()
     {
-        $productFactory = $this->getProductFactory();
+        $manufacturerFactory = $this->getManufacturerFactory();
         
-        $product1 = $productFactory->create();
-        $product1->setSku('SKU1');
-        $product1->setName('Product 1');
-        $product1->setDescription('Product 1 description');
-        $product1->setManufacturer($this->getReference('manufacturer-acme'));
-        $product1->setAuthor($this->getReference('user-johndoe'));
+        $manufacturer1 = $manufacturerFactory->create();
+        $manufacturer1->setName('Acme');
+        $this->setReference('manufacturer-acme', $manufacturer1);
         
-        $product2 = $productFactory->create();
-        $product2->setSku('SKU2');
-        $product2->setName('Product 2');
-        $product2->setDescription('Product 2 description');
-        $product2->setManufacturer($this->getReference('manufacturer-shield'));
-        $product2->setAuthor($this->getReference('user-janedoe'));
+        $manufacturer2 = $manufacturerFactory->create();
+        $manufacturer2->setName('Shield');
+        $this->setReference('manufacturer-shield', $manufacturer2);
         
         return array(
-            $product1,
-            $product2
+            $manufacturer1,
+            $manufacturer2
         );
     }
  

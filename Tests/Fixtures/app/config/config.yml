@@ -49,6 +49,7 @@ doctrine:
         entity_managers:
             default:
                 auto_mapping: true
+                naming_strategy: doctrine.orm.naming_strategy.underscore
                 mappings:
                     XideaProductBundleTest:
                         type: yml
@@ -58,6 +59,7 @@ doctrine:
         resolve_target_entities:
             Xidea\Component\User\Model\UserInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
             Xidea\Component\Product\Model\AuthorInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
+            Xidea\Component\Product\Model\ManufacturerInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\ProductManufacturer
             Xidea\Component\Product\Model\ProductInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product
                 
 xidea_user:
@@ -91,3 +93,11 @@ xidea_product:
                 name: product_create
         template:
             configuration: xidea_product.product.template.configuration.default
+    manufacturer:
+        class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\ProductManufacturer
+        configuration: xidea_product.manufacturer.configuration.default
+        factory: xidea_product.manufacturer.factory.default
+        manager: xidea_product.manufacturer.manager.default
+        loader: xidea_product.manufacturer.loader.default
+        template:
+            configuration: xidea_product.manufacturer.template.configuration.default

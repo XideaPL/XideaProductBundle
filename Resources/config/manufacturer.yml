@@ -1,0 +1,20 @@
+parameters:
+    xidea_product.manufacturer.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
+    xidea_product.manufacturer.factory.default.class: Xidea\Component\Base\Factory\ObjectFactory
+    xidea_product.manufacturer.template.configuration.default.class: Xidea\Bundle\BaseBundle\TemplateConfiguration
+  
+services:
+    xidea_product.manufacturer.configuration.default:
+        class: %xidea_product.manufacturer.configuration.default.class%
+        arguments:
+            - @xidea_product.manufacturer.template.configuration
+    xidea_product.manufacturer.template.configuration.default:
+        class: %xidea_product.manufacturer.template.configuration.default.class%
+        arguments:
+            - %xidea_product.manufacturer.template.namespace%
+            - %xidea_product.manufacturer.template.templates%
+            - %xidea_product.manufacturer.template.engine%
+    xidea_product.manufacturer.factory.default:
+        class: %xidea_product.manufacturer.factory.default.class%
+        arguments:
+            - %xidea_product.manufacturer.class%

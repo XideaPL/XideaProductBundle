@@ -9,6 +9,8 @@
 
 namespace Xidea\Bundle\ProductBundle\Controller\Product;
 
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
 use Xidea\Component\Product\Builder\ProductDirectorInterface,
     Xidea\Component\Product\Manager\ProductManagerInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
@@ -46,14 +48,14 @@ class CreateController extends AbstractCreateController
         return $this->productDirector->build();
     }
 
-    protected function onPreCreate($object, $request)
+    protected function onPreCreate($object, Request $request)
     {
         $this->dispatch(ProductEvents::PRE_CREATE, $event = new GetProductResponseEvent($object, $request));
 
         return $event->getResponse();
     }
 
-    protected function onCreateSuccess($object, $request)
+    protected function onCreateSuccess($object, Request $request)
     {
         $this->dispatch(ProductEvents::CREATE_SUCCESS, $event = new GetProductResponseEvent($object, $request));
 
@@ -66,7 +68,7 @@ class CreateController extends AbstractCreateController
         return $response;
     }
 
-    protected function onCreateCompleted($object, $request, $response)
+    protected function onCreateCompleted($object, Request $request, Response $response)
     {
         $this->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($object, $request, $response));
     }

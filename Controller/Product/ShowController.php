@@ -9,6 +9,7 @@
 
 namespace Xidea\Bundle\ProductBundle\Controller\Product;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Xidea\Component\Product\Loader\ProductLoaderInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
@@ -23,7 +24,6 @@ class ShowController extends AbstractShowController
     /*
      * @var ProductLoaderInterface
      */
-
     protected $productLoader;
 
     public function __construct(ConfigurationInterface $configuration, ProductLoaderInterface $productLoader)
@@ -44,7 +44,7 @@ class ShowController extends AbstractShowController
         return $product;
     }
 
-    protected function onPreShow($object, $request)
+    protected function onPreShow($object, Request $request)
     {
         return;
     }

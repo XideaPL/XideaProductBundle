@@ -23,6 +23,11 @@ Xidea\Component\Product\Model\AbstractProduct:
             type: datetime
             nullable: true
     manyToOne:
+        manufacturer:
+            targetEntity: Xidea\Component\Product\Model\ManufacturerInterface
+            joinColumn:
+                name: manufacturer_id
+                referencedColumnName: id
         author:
             targetEntity: Xidea\Component\Product\Model\AuthorInterface
             joinColumn:

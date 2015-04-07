@@ -36,7 +36,7 @@ class ListController extends AbstractListController
         return $this->productLoader->loadAll();
     }
     
-    protected function onPreList($objects, $request)
+    protected function onPreList($objects, Request $request)
     {
         return;
     }
