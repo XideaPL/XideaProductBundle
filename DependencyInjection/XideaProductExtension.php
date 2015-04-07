@@ -23,11 +23,10 @@ class XideaProductExtension extends AbstractExtension
 
         $loader->load('product.yml');
         $loader->load('product_orm.yml');
+        $loader->load('product_controller.yml');
+        $loader->load('product_form.yml');
         $loader->load('manufacturer.yml');
         $loader->load('manufacturer_orm.yml');
-        $loader->load('user.yml');
-        $loader->load('controller.yml');
-        $loader->load('form.yml');
 
         $this->loadProductSection($config['product'], $container, $loader);
         $this->loadManufacturerSection($config['manufacturer'], $container, $loader);
@@ -42,7 +41,6 @@ class XideaProductExtension extends AbstractExtension
         $container->setAlias('xidea_product.product.director', $config['director']);
         $container->setAlias('xidea_product.product.manager', $config['manager']);
         $container->setAlias('xidea_product.product.loader', $config['loader']);
-        $container->setAlias('xidea_product.user.provider', $config['user_provider']);
         
         if (!empty($config['form'])) {
             $this->loadProductFormSection($config['form'], $container, $loader);

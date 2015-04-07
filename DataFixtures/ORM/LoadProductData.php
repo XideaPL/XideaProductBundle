@@ -80,14 +80,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product1->setName('Product 1');
         $product1->setDescription('Product 1 description');
         $product1->setManufacturer($this->getReference('manufacturer-acme'));
-        $product1->setAuthor($this->getReference('user-johndoe'));
         
         $product2 = $productFactory->create();
         $product2->setSku('SKU2');
         $product2->setName('Product 2');
         $product2->setDescription('Product 2 description');
         $product2->setManufacturer($this->getReference('manufacturer-shield'));
-        $product2->setAuthor($this->getReference('user-janedoe'));
         
         return array(
             $product1,

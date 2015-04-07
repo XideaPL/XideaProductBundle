@@ -28,4 +28,3 @@ services:
         class: %xidea_product.product.director.default.class%
         arguments:
             - @xidea_product.product.builder
-            - @xidea_product.user.provider

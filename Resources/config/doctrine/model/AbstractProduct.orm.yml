@@ -14,6 +14,7 @@ Xidea\Component\Product\Model\AbstractProduct:
             length: 255
         description:
             type: text
+            nullable: true
         createdAt:
             column: created_at
             type: datetime
@@ -28,12 +29,3 @@ Xidea\Component\Product\Model\AbstractProduct:
             joinColumn:
                 name: manufacturer_id
                 referencedColumnName: id
-        author:
-            targetEntity: Xidea\Component\Product\Model\AuthorInterface
-            joinColumn:
-                name: author_id
-                referencedColumnName: id
-                nullable: false
-#    lifecycleCallbacks:
-#        prePersist: [ prePersist ]
-#        preUpdate: [ preUpdate ]

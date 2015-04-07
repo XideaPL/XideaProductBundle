@@ -58,7 +58,6 @@ doctrine:
                         is_bundle: false
         resolve_target_entities:
             Xidea\Component\User\Model\UserInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
-            Xidea\Component\Product\Model\AuthorInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User
             Xidea\Component\Product\Model\ManufacturerInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\ProductManufacturer
             Xidea\Component\Product\Model\ProductInterface: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product
                 
