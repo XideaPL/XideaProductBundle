@@ -29,10 +29,6 @@ class ShowControllerTest extends ControllerTestCase
             0,
             $crawler->filter('html:contains("Product 1 description")')->count()
         );
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('html:contains("Autor")')->count()
-        );
     }
 }
 

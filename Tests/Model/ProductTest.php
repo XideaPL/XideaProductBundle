@@ -9,8 +9,7 @@
 
 namespace Xidea\Bundle\ProductBundle\Tests\Model;
 
-use Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product,
-    Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\User;
+use Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>
@@ -74,29 +73,8 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($date, $product->getUpdatedAt());
     }
     
-    public function testAuthor()
-    {
-        $product = $this->createProduct();
-        $this->assertNull($product->getAuthor());
-        
-        $username = 'johndoe';
-        $author = $this->createAuthor();
-        $author->setUsername($username);
-        
-        $product->setAuthor($author);
-        
-        $productAuthor = $product->getAuthor();
-        $this->assertSame($author, $productAuthor);
-        $this->assertEquals($username, $productAuthor->getUsername());
-    }
-    
     protected function createProduct()
     {
         return new Product();
-    }
-    
-    protected function createAuthor()
-    {
-        return new User();
     }
 }
