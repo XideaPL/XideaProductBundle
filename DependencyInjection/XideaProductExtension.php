@@ -66,7 +66,7 @@ class XideaProductExtension extends AbstractExtension
         $container->setParameter('xidea_product.manufacturer.class', $config['class']);
         $container->setAlias('xidea_product.manufacturer.configuration', $config['configuration']);
         $container->setAlias('xidea_product.manufacturer.factory', $config['factory']);
-        $container->setAlias('xidea_product.manufacturer.loader', $config['manager']);
+        $container->setAlias('xidea_product.manufacturer.loader', $config['loader']);
         $container->setAlias('xidea_product.manufacturer.manager', $config['manager']);
         
         if(isset($config['template'])) {

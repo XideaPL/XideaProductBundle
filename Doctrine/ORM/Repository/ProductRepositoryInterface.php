@@ -9,24 +9,9 @@
 
 namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository;
 
-use Xidea\Component\Product\Model\AuthorInterface;
-
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
 interface ProductRepositoryInterface
 {
-    /**
-     * Returns a query builder.
-     * 
-     * @return object
-     */
-    public function findByAuthorQB(AuthorInterface $author);
-    
-    /**
-     * Returns a set of products by author.
-     * 
-     * @return array
-     */
-    public function findByAuthor(AuthorInterface $author);
 }

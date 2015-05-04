@@ -13,6 +13,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Doctrine\ORM\EntityManager;
 
+use Xidea\Component\Base\Doctrine\ORM\ObjectManagerInterface;
+
 use Xidea\Component\Product\Manager\ProductManagerInterface,
     Xidea\Component\Product\Model\ProductInterface;
 
@@ -22,7 +24,7 @@ use Xidea\Bundle\ProductBundle\ProductEvents,
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ProductManager implements ProductManagerInterface
+class ProductManager implements ObjectManagerInterface, ProductManagerInterface
 {
     /*
      * @var EntityManager
@@ -43,6 +45,24 @@ class ProductManager implements ProductManagerInterface
     {
         $this->entityManager = $entityManager;
         $this->eventDispatcher = $eventDispatcher;
+
+        $this->setFlushMode(true);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setFlushMode($flushMode = true)
+    {
+        $this->flushMode = $flushMode;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function isFlushMode()
+    {
+        return $this->flushMode;
     }
 
     /**
@@ -54,7 +74,8 @@ class ProductManager implements ProductManagerInterface
         
         $this->entityManager->persist($product);
 
-        $this->entityManager->flush();
+        if($this->isFlushMode())
+            $this->entityManager->flush();
         
         $this->eventDispatcher->dispatch(ProductEvents::POST_SAVE, new ProductEvent($product));
 
@@ -65,7 +86,8 @@ class ProductManager implements ProductManagerInterface
     {  
         $this->entityManager->persist($product);
 
-        $this->entityManager->flush();
+        if($this->isFlushMode())
+            $this->entityManager->flush();
 
         return $product->getId();
     }
@@ -75,7 +97,22 @@ class ProductManager implements ProductManagerInterface
      */
     public function delete(ProductInterface $product)
     {
-        $this->entityManager->remove($product);
+        return $this->entityManager->remove($product);
     }
-
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function flush()
+    {
+        $this->entityManager->flush();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->entityManager->clear();
+    }
 }
