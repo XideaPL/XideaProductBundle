@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Doctrine\ORM\EntityManager;
 
-use Xidea\Component\Base\Doctrine\ORM\ObjectManagerInterface;
+use Xidea\Component\Base\Doctrine\ORM\ManagerInterface;
 
 use Xidea\Component\Product\Manager\ProductManagerInterface,
     Xidea\Component\Product\Model\ProductInterface;
@@ -24,7 +24,7 @@ use Xidea\Bundle\ProductBundle\ProductEvents,
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ProductManager implements ObjectManagerInterface, ProductManagerInterface
+class ProductManager implements ManagerInterface, ProductManagerInterface
 {
     /*
      * @var EntityManager
