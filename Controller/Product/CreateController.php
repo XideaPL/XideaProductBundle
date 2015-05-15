@@ -36,40 +36,40 @@ class CreateController extends AbstractCreateController
      */
     protected $productManager;
 
-    public function __construct(ConfigurationInterface $configuration, ProductDirectorInterface $productDirector, ProductManagerInterface $objectManager, FormHandlerInterface $formHandler)
+    public function __construct(ConfigurationInterface $configuration, ProductDirectorInterface $productDirector, ProductManagerInterface $modelManager, FormHandlerInterface $formHandler)
     {
-        parent::__construct($configuration, $objectManager, $formHandler);
+        parent::__construct($configuration, $modelManager, $formHandler);
 
         $this->productDirector = $productDirector;
     }
 
-    protected function createObject()
+    protected function createModel()
     {
         return $this->productDirector->build();
     }
 
-    protected function onPreCreate($object, Request $request)
+    protected function onPreCreate($model, Request $request)
     {
-        $this->dispatch(ProductEvents::PRE_CREATE, $event = new GetProductResponseEvent($object, $request));
+        $this->dispatch(ProductEvents::PRE_CREATE, $event = new GetProductResponseEvent($model, $request));
 
         return $event->getResponse();
     }
 
-    protected function onCreateSuccess($object, Request $request)
+    protected function onCreateSuccess($model, Request $request)
     {
-        $this->dispatch(ProductEvents::CREATE_SUCCESS, $event = new GetProductResponseEvent($object, $request));
+        $this->dispatch(ProductEvents::CREATE_SUCCESS, $event = new GetProductResponseEvent($model, $request));
 
         if (null === $response = $event->getResponse()) {
             $response = $this->redirectToRoute('xidea_product_show', array(
-                'id' => $object->getId()
+                'id' => $model->getId()
             ));
         }
 
         return $response;
     }
 
-    protected function onCreateCompleted($object, Request $request, Response $response)
+    protected function onCreateCompleted($model, Request $request, Response $response)
     {
-        $this->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($object, $request, $response));
+        $this->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($model, $request, $response));
     }
 }

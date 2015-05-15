@@ -33,7 +33,7 @@ class ShowController extends AbstractShowController
         $this->productLoader = $productLoader;
     }
 
-    protected function loadObject($id)
+    protected function loadModel($id)
     {
         $product = $this->productLoader->load($id);
 

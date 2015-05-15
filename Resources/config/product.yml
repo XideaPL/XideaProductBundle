@@ -1,6 +1,6 @@
 parameters:
     xidea_product.product.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
-    xidea_product.product.factory.default.class: Xidea\Component\Base\Factory\ObjectFactory
+    xidea_product.product.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
     xidea_product.product.builder.default.class: Xidea\Component\Product\Builder\ProductBuilder
     xidea_product.product.director.default.class: Xidea\Component\Product\Builder\ProductDirector
     xidea_product.product.template.configuration.default.class: Xidea\Bundle\BaseBundle\TemplateConfiguration
