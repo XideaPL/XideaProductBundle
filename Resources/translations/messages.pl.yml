@@ -1,6 +1,18 @@
 product:
     label: Produkt
-    body: Treść zgłoszenia
+    sku: SKU
+    slug: Alias
+    name: Nazwa
+    description: Opis
+    short_description: Krótki opis
+    url: URL
+    price: Cena
+    retail_price: Cena sugerowana
+    qty: Ilość
+    width: Szerokość
+    height: Wysokość
+    depth: Głębokość
+    available_on: Dostępny od
     created_at: Dodano
     updated_at: Zmodyfikowano
     author:

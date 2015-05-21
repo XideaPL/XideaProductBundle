@@ -27,6 +27,11 @@ use Xidea\Bundle\ProductBundle\ProductEvents,
 class ProductManager implements ModelManagerInterface, ProductManagerInterface
 {
     /*
+     * @var bool
+     */
+    protected $flushMode;
+    
+    /*
      * @var EntityManager
      */
     protected $entityManager;
@@ -82,6 +87,9 @@ class ProductManager implements ModelManagerInterface, ProductManagerInterface
         return $product->getId();
     }
     
+    /**
+     * {@inheritdoc}
+     */
     public function update(ProductInterface $product)
     {  
         $this->entityManager->persist($product);

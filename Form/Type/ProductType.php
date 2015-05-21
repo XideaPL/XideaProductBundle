@@ -36,13 +36,47 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('name', null, array(
-                    'label' => 'product.name'
-                ))
-                ->add('description', null, array(
-                    'label' => 'product.description'
-                ))
-                ->add('save', 'submit', array('label' => 'product_form.submit'))
+            ->add('sku', null, array(
+                'label' => 'product.sku'
+            ))
+            ->add('slug', null, array(
+                'label' => 'product.slug'
+            ))
+            ->add('name', null, array(
+                'label' => 'product.name'
+            ))
+            ->add('description', null, array(
+                'label' => 'product.description'
+            ))
+            ->add('shortDescription', null, array(
+                'label' => 'product.short_description'
+            ))
+            ->add('url', null, array(
+                'label' => 'product.url'
+            ))
+            ->add('price', null, array(
+                'label' => 'product.price'
+            ))
+            ->add('retailPrice', null, array(
+                'label' => 'product.retail_price'
+            ))
+            ->add('qty', null, array(
+                'label' => 'product.qty'
+            ))
+            ->add('width', null, array(
+                'label' => 'product.width'
+            ))
+            ->add('height', null, array(
+                'label' => 'product.height'
+            ))
+            ->add('depth', null, array(
+                'label' => 'product.depth'
+            ))
+            ->add('availableOn', 'date', array(
+                'label' => 'product.available_on',
+                'widget' => 'single_text'
+            ))
+            ->add('save', 'submit', array('label' => 'product_form.submit'))
         ;
     }
 

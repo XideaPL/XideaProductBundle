@@ -9,11 +9,49 @@ Xidea\Component\Product\Model\AbstractProduct:
         sku:
             type: string
             length: 128
+        slug:
+            type: string
+            length: 255
+            nullable: true
         name:
             type: string
             length: 255
         description:
             type: text
+            nullable: true
+        shortDescription:
+            type: string
+            length: 1024
+            nullable: true
+        url:
+            type: string
+            length: 512
+            nullable: true
+        price:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: true
+        retailPrice:
+            type: decimal
+            precision: 10
+            scale: 2
+            nullable: true
+        qty:
+            type: integer
+            nullable: true
+        width:
+            type: integer
+            nullable: true
+        height:
+            type: integer
+            nullable: true
+        depth:
+            type: integer
+            nullable: true
+        availableOn:
+            column: available_on
+            type: datetime
             nullable: true
         createdAt:
             column: created_at

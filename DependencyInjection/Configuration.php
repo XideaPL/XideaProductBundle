@@ -82,7 +82,7 @@ class Configuration extends AbstractConfiguration
                                 'path' => 'Product\Create:create'
                             ),
                             'create_form' => array(
-                                'path' => 'Product\Create:create_form'
+                                'path' => 'Product\Main:form'
                             )
                         )))
                     ->end()

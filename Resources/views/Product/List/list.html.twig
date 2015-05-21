@@ -22,8 +22,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>{{ 'product.sku'|trans }}</th>
                                     <th>{{ 'product.name'|trans }}</th>
-                                    <th>{{ 'product.created_at'|trans }}</th>
+                                    <th>{{ 'product.price'|trans }}</th>
+                                    <th>{{ 'product.retail_price'|trans }}</th>
+                                    <th>{{ 'product.qty'|trans }}</th>
                                     <th>{{ 'product.updated_at'|trans }}</th>
                                 </tr>
                             </thead>
@@ -31,8 +34,11 @@
                                 {% for model in models %}
                                     <tr>
                                         <td>{{ model.id }}</td>
+                                        <td>{{ model.sku }}</td>
                                         <td>{{ model.name }}</td>
-                                        <td>{{ model.createdAt|date() }}</td>
+                                        <td>{{ model.price }}</td>
+                                        <td>{{ model.retailPrice }}</td>
+                                        <td>{{ model.qty }}</td>
                                         <td>{{ model.updatedAt|date() }}</td>
                                     </tr>
                                 {% endfor %}
