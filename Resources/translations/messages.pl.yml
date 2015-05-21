@@ -22,12 +22,13 @@ product_form:
     create:
         submit: Utwórz
         
-product_action:
-    list:
+product_list:
         title: Produkty
-    show:
-        title: %product_name%
+        
+product_show:
+        title: Szczegóły %product_name%
         details:
             title: Szczegóły produktu
-    create:
+            
+product_create:
         title: Nowy produkt

@@ -23,6 +23,11 @@ class ShowControllerTest extends ControllerTestCase
 
         $this->assertGreaterThan(
             0,
+            $crawler->filter('html:contains("Szczegóły produktu")')->count()
+        );
+        
+        $this->assertGreaterThan(
+            0,
             $crawler->filter('html:contains("SKU")')->count()
         );
         $this->assertGreaterThan(
