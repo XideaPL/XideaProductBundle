@@ -26,7 +26,7 @@ product_list:
         title: Produkty
         
 product_show:
-        title: Szczegóły %product_name%
+        title: Szczegóły %name%
         details:
             title: Szczegóły produktu
             
