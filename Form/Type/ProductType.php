@@ -39,42 +39,53 @@ class ProductType extends AbstractType
             ->add('sku', null, array(
                 'label' => 'product.sku'
             ))
-            ->add('slug', null, array(
-                'label' => 'product.slug'
-            ))
             ->add('name', null, array(
                 'label' => 'product.name'
             ))
+            ->add('slug', null, array(
+                'label' => 'product.slug',
+                'required' => false
+            ))
             ->add('description', null, array(
-                'label' => 'product.description'
+                'label' => 'product.description',
+                'required' => false
             ))
             ->add('shortDescription', null, array(
-                'label' => 'product.short_description'
+                'label' => 'product.short_description',
+                'required' => false
             ))
             ->add('url', null, array(
-                'label' => 'product.url'
+                'label' => 'product.url',
+                'required' => false
             ))
             ->add('price', null, array(
-                'label' => 'product.price'
+                'label' => 'product.price',
+                'required' => false
             ))
             ->add('retailPrice', null, array(
-                'label' => 'product.retail_price'
+                'label' => 'product.retail_price',
+                'required' => false
             ))
             ->add('qty', null, array(
-                'label' => 'product.qty'
+                'label' => 'product.qty',
+                'required' => false
             ))
             ->add('width', null, array(
-                'label' => 'product.width'
+                'label' => 'product.width',
+                'required' => false
             ))
             ->add('height', null, array(
-                'label' => 'product.height'
+                'label' => 'product.height',
+                'required' => false
             ))
             ->add('depth', null, array(
-                'label' => 'product.depth'
+                'label' => 'product.depth',
+                'required' => false
             ))
             ->add('availableOn', 'date', array(
                 'label' => 'product.available_on',
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'required' => false
             ))
             ->add('save', 'submit', array('label' => 'product_form.submit'))
         ;

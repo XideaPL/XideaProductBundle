@@ -19,8 +19,7 @@ product:
         name: Autor
 
 product_form:
-    create:
-        submit: Utwórz
+    submit: Zapisz
         
 product_list:
         title: Produkty

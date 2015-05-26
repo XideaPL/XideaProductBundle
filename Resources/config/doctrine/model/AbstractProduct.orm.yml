@@ -41,13 +41,19 @@ Xidea\Component\Product\Model\AbstractProduct:
             type: integer
             nullable: true
         width:
-            type: integer
+            type: decimal
+            precision: 5
+            scale: 2
             nullable: true
         height:
-            type: integer
+            type: decimal
+            precision: 5
+            scale: 2
             nullable: true
         depth:
-            type: integer
+            type: decimal
+            precision: 5
+            scale: 2
             nullable: true
         availableOn:
             column: available_on
