@@ -26,7 +26,7 @@ services:
             - @xidea_product.product.configuration
             - @xidea_product.product.director
             - @xidea_product.product.manager
-            - @xidea_product.product.form.create.handler
+            - @xidea_product.product.form.handler
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
             - [setRouter, [@router]]

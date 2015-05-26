@@ -85,11 +85,11 @@ xidea_product:
         manager: xidea_product.product.manager.default
         loader: xidea_product.product.loader.default
         form:
-            create:
-                factory: xidea_product.product.form.create.factory.default
-                handler: xidea_product.product.form.create.handler.default
+            product:
+                factory: xidea_product.product.form.factory.default
+                handler: xidea_product.product.form.handler.default
                 type: xidea_product
-                name: product_create
+                name: product
         template:
             configuration: xidea_product.product.template.configuration.default
     manufacturer:

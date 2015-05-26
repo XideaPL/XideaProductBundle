@@ -53,12 +53,12 @@ class XideaProductExtension extends AbstractExtension
     
     protected function loadProductFormSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $container->setAlias('xidea_product.product.form.create.factory', $config['create']['factory']);
-        $container->setAlias('xidea_product.product.form.create.handler', $config['create']['handler']);
+        $container->setAlias('xidea_product.product.form.factory', $config['product']['factory']);
+        $container->setAlias('xidea_product.product.form.handler', $config['product']['handler']);
         
-        $container->setParameter('xidea_product.product.form.create.type', $config['create']['type']);
-        $container->setParameter('xidea_product.product.form.create.name', $config['create']['name']);
-        $container->setParameter('xidea_product.product.form.create.validation_groups', $config['create']['validation_groups']);
+        $container->setParameter('xidea_product.product.form.type.name', $config['product']['type']);
+        $container->setParameter('xidea_product.product.form.name', $config['product']['name']);
+        $container->setParameter('xidea_product.product.form.validation_groups', $config['product']['validation_groups']);
     }
     
     protected function loadManufacturerSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
