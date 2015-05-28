@@ -90,13 +90,11 @@ xidea_product:
                 handler: xidea_product.product.form.handler.default
                 type: xidea_product
                 name: product
-        template:
-            configuration: xidea_product.product.template.configuration.default
     manufacturer:
         class: Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\ProductManufacturer
         configuration: xidea_product.manufacturer.configuration.default
         factory: xidea_product.manufacturer.factory.default
         manager: xidea_product.manufacturer.manager.default
         loader: xidea_product.manufacturer.loader.default
-        template:
-            configuration: xidea_product.manufacturer.template.configuration.default
+    template:
+        configuration: xidea_product.template.configuration.default

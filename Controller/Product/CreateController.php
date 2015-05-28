@@ -36,11 +36,21 @@ class CreateController extends AbstractCreateController
      */
     protected $productManager;
 
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     * @param ProductDirectorInterface $productDirector
+     * @param ProductManagerInterface $modelManager
+     * @param FormHandlerInterface $formHandler
+     */
     public function __construct(ConfigurationInterface $configuration, ProductDirectorInterface $productDirector, ProductManagerInterface $modelManager, FormHandlerInterface $formHandler)
     {
         parent::__construct($configuration, $modelManager, $formHandler);
 
         $this->productDirector = $productDirector;
+        
+        $this->createTemplate = 'product_create';
+        $this->createFormTemplate = 'product_create_form';
     }
 
     protected function createModel()
@@ -70,6 +80,8 @@ class CreateController extends AbstractCreateController
 
     protected function onCreateCompleted($model, Request $request, Response $response)
     {
-        $this->dispatch(ProductEvents::CREATE_COMPLETED, new FilterProductResponseEvent($model, $request, $response));
+        $this->dispatch(ProductEvents::CREATE_COMPLETED, $event = new FilterProductResponseEvent($model, $request, $response));
+        
+        return $event->getResponse();
     }
 }

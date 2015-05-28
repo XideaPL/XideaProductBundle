@@ -29,6 +29,8 @@ class ListController extends AbstractListController
         parent::__construct($configuration);
         
         $this->productLoader = $productLoader;
+        
+        $this->listTemplate = 'product_list';
     }
     
     protected function loadModels(Request $request)
