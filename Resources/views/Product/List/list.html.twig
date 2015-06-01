@@ -6,7 +6,7 @@
     {% block product_main %}
         <div class="box product-box">
             <div class="box-header">
-                {{ 'product_list.title'|trans }}
+                <h3 class="box-title">{{ 'product_list.title'|trans }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -37,6 +37,17 @@
                                     </tr>
                                 {% endfor %}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ 'product.sku'|trans }}</th>
+                                    <th>{{ 'product.name'|trans }}</th>
+                                    <th>{{ 'product.price'|trans }}</th>
+                                    <th>{{ 'product.retail_price'|trans }}</th>
+                                    <th>{{ 'product.qty'|trans }}</th>
+                                    <th>{{ 'product.updated_at'|trans }}</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!-- /.product-list -->
