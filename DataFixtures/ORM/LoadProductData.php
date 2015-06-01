@@ -85,6 +85,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product1->setPrice(39.90);
         $product1->setRetailPrice(29.90);
         $product1->setQty(10);
+        $product1->setImage('product-1-image.jpg');
+        $product1->setImageLabel('Product image label');
         $product1->setWidth(10);
         $product1->setHeight(10);
         $product1->setDepth(10);
@@ -101,6 +103,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product2->setPrice(39.90);
         $product2->setRetailPrice(29.90);
         $product2->setQty(20);
+        $product2->setImage('product-2-image.jpg');
+        $product2->setImageLabel('Product image label');
         $product2->setWidth(20);
         $product2->setHeight(20);
         $product2->setDepth(20);

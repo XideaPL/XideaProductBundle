@@ -70,6 +70,14 @@ class ProductType extends AbstractType
                 'label' => 'product.qty',
                 'required' => false
             ))
+            ->add('image', null, array(
+                'label' => 'product.image',
+                'required' => false
+            ))
+            ->add('imageLabel', null, array(
+                'label' => 'product.image_label',
+                'required' => false
+            ))
             ->add('width', null, array(
                 'label' => 'product.width',
                 'required' => false

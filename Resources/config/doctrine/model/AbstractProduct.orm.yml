@@ -40,6 +40,14 @@ Xidea\Component\Product\Model\AbstractProduct:
         qty:
             type: integer
             nullable: true
+        image:
+            type: string
+            length: 512
+            nullable: true
+        imageLabel:
+            type: string
+            length: 255
+            nullable: true
         width:
             type: decimal
             precision: 5

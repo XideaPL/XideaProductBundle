@@ -32,6 +32,8 @@ class ProductTypeTest extends TypeTestCase
             'price' => 39.90,
             'retailPrice' => 29.90,
             'qty' => 10,
+            'image' => 'product-image.jpg',
+            'imageLabel' => 'Product image label',
             'width' => 10,
             'height' => 10,
             'depth' => 10,

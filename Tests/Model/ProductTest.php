@@ -124,6 +124,28 @@ class ProductTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($qty, $product->getQty());
     }
     
+    public function testImage()
+    {
+        $product = $this->createProduct();
+        $this->assertNull($product->getImage());
+        
+        $image = 'product-image.jpg';
+        
+        $product->setImage($image);
+        $this->assertEquals($image, $product->getImage());
+    }
+    
+    public function testImageLabel()
+    {
+        $product = $this->createProduct();
+        $this->assertNull($product->getImageLabel());
+        
+        $label = 'Product image label';
+        
+        $product->setImageLabel($label);
+        $this->assertEquals($label, $product->getImageLabel());
+    }
+    
     public function testWidth()
     {
         $product = $this->createProduct();

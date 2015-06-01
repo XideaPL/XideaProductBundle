@@ -9,14 +9,15 @@ product:
     price: Cena
     retail_price: Cena sugerowana
     qty: Ilość
+    image: Obrazek
+    image_label: Etykieta obrazka
     width: Szerokość
     height: Wysokość
     depth: Głębokość
     available_on: Dostępny od
     created_at: Dodano
     updated_at: Zmodyfikowano
-    author:
-        name: Autor
+    manufacturer: Producent
 
 product_form:
     submit: Zapisz
