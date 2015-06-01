@@ -3,124 +3,128 @@
     <h1 class="page-header">{{ 'product_show.title'|trans({'%name%':model.name}) }}</h1>
 {% endblock %}
 {% block bundle_main %}
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
+    {% block product_main %}
+        {% block product_details_box %}
+            <div class="box box-default">
+                <div class="box-header">
                     {{ 'product_show.details.title'|trans }}
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table class="table table-bordered table-striped">
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.sku'|trans }}</code>
-                                </th>
-                                <td>{{ model.sku }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.slug'|trans }}</code>
-                                </th>
-                                <td>{{ model.slug }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.name'|trans }}</code>
-                                </th>
-                                <td>{{ model.name }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.description'|trans }}</code>
-                                </th>
-                                <td>{{ model.description }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.short_description'|trans }}</code>
-                                </th>
-                                <td>{{ model.shortDescription }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.url'|trans }}</code>
-                                </th>
-                                <td>{{ model.url }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.price'|trans }}</code>
-                                </th>
-                                <td>{{ model.price }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.retail_price'|trans }}</code>
-                                </th>
-                                <td>{{ model.retailPrice }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.qty'|trans }}</code>
-                                </th>
-                                <td>{{ model.qty }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.image'|trans }}</code>
-                                </th>
-                                <td>{{ model.image }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.image_label'|trans }}</code>
-                                </th>
-                                <td>{{ model.imageLabel }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.width'|trans }}</code>
-                                </th>
-                                <td>{{ model.width }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.height'|trans }}</code>
-                                </th>
-                                <td>{{ model.height }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.depth'|trans }}</code>
-                                </th>
-                                <td>{{ model.depth }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.available_on'|trans }}</code>
-                                </th>
-                                <td>{{ model.availableOn|date }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.created_at'|trans }}</code>
-                                </th>
-                                <td>{{ model.createdAt|date }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <code>{{ 'product.updated_at'|trans }}</code>
-                                </th>
-                                <td>{{ model.updatedAt|date }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- /.box-heading -->
+                <div class="box-body">
+                    {% block product_details %}
+                        <div class="product-details">
+                            <table class="table table-bordered table-striped product-table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.sku'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.sku }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.slug'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.slug }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.name'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.description'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.short_description'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.shortDescription }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.url'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.url }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.price'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.price }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.retail_price'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.retailPrice }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.qty'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.qty }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.image'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.image }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.image_label'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.imageLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.width'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.width }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.height'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.height }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.depth'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.depth }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.available_on'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.availableOn|date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.created_at'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.createdAt|date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <code>{{ 'product.updated_at'|trans }}</code>
+                                        </th>
+                                        <td>{{ model.updatedAt|date }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endblock %}
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.box-body -->
             </div>
-            <!-- /.panel -->
-        </div>
-    </div>
+            <!-- /.box -->
+        {% endblock %}
+    {% endblock %}
 {% endblock %}
