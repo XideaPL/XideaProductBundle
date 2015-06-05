@@ -1,5 +1,6 @@
 parameters:
     xidea_product.product.form.type.class: Xidea\Bundle\ProductBundle\Form\Type\ProductType
+    xidea_product.product.form.choice.type.class: Xidea\Bundle\ProductBundle\Form\Type\ProductChoiceType
     xidea_product.product.form.factory.default.class: Xidea\Bundle\BaseBundle\Form\Factory\FormFactory
     xidea_product.product.form.handler.default.class: Xidea\Bundle\ProductBundle\Form\Handler\ProductFormHandler
 
@@ -10,6 +11,12 @@ services:
             - %xidea_product.product.class%
         tags:
             - { name: form.type, alias: "xidea_product" }
+    xidea_product.product.form.choice.type:
+        class: %xidea_product.product.form.choice.type.class%
+        arguments:
+            - @xidea_product.product.loader
+        tags:
+            - { name: form.type, alias: "xidea_product_choice" }
     xidea_product.product.form.factory.default:
         class: %xidea_product.product.form.factory.default.class%
         arguments:
