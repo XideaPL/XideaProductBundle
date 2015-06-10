@@ -1,0 +1,7 @@
+{% use 'form_div_layout.html.twig' with form_row as base_form_row %}
+
+{% block form_row %}
+    <div class="product-form-field product-form-{{ form.vars.name }}">
+        {{ block('base_form_row') }}
+    </div>
+{% endblock %}

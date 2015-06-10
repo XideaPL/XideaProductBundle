@@ -84,7 +84,8 @@ class XideaProductExtension extends AbstractExtension
             'product_list' => ['path' => 'Product/List/list'],
             'product_show' => ['path' => 'Product/Show/show'],
             'product_create' => ['path' => 'Product/Create/create'],
-            'product_create_form' => ['path' => 'Product/Main/form']
+            'product_create_form' => ['path' => 'Product/Form/form'],
+            'product_form_fields' => ['path' => 'Product/Form/fields']
         ];
     }
 

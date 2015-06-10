@@ -1,0 +1,11 @@
+{% form_theme form with xidea_template('xidea_product', 'product_form_fields') %}
+<div class="product product-form">
+{{ form_start(form, {'multipart': true}) }}
+    {% block product_form %}
+        {{ form_widget(form) }}
+    {% endblock %}
+    <p>
+        {{ 'form.required_fields'|trans|raw }}
+    </p>
+{{ form_end(form) }}
+</div>
