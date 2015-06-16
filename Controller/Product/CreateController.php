@@ -28,7 +28,6 @@ class CreateController extends AbstractCreateController
     /*
      * @var ProductDirectorInterface
      */
-
     protected $productDirector;
 
     /*

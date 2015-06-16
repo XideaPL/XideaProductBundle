@@ -39,6 +39,7 @@ class XideaProductExtension extends AbstractExtension
 
     protected function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
+        $container->setParameter('xidea_product.product.code', $config['code']);
         $container->setParameter('xidea_product.product.class', $config['class']);
         $container->setAlias('xidea_product.product.configuration', $config['configuration']);
         $container->setAlias('xidea_product.product.factory', $config['factory']);
@@ -64,6 +65,7 @@ class XideaProductExtension extends AbstractExtension
 
     protected function loadManufacturerSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
+        $container->setParameter('xidea_product.manufacturer.code', $config['code']);
         $container->setParameter('xidea_product.manufacturer.class', $config['class']);
         $container->setAlias('xidea_product.manufacturer.configuration', $config['configuration']);
         $container->setAlias('xidea_product.manufacturer.factory', $config['factory']);
