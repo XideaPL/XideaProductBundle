@@ -10,16 +10,38 @@
 namespace Xidea\Bundle\ProductBundle\Tests\Form\Type;
 
 use Xidea\Bundle\ProductBundle\Form\Type\ProductType,
-    Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product;
+    Xidea\Bundle\ProductBundle\Form\Type\ManufacturerChoiceType,
+    Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\Product,
+    Xidea\Bundle\ProductBundle\Tests\Fixtures\Model\ProductManufacturer;
 
 use Symfony\Component\Form\Test\TypeTestCase,
     Symfony\Component\Form\Forms,
     Symfony\Component\Form\FormBuilder,
     Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension,
-    Symfony\Component\Validator\ConstraintViolationList;
+    Symfony\Component\Validator\ConstraintViolationList,
+    Symfony\Component\Form\PreloadedExtension;
 
 class ProductTypeTest extends TypeTestCase
 {
+    protected function getExtensions()
+    {
+        $manufacturerLoader = $this->getMockBuilder(
+                    'Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader\ManufacturerLoader'
+                )
+                ->disableOriginalConstructor()
+                ->setMethods(['loadAll'])
+                ->getMock();
+        $manufacturerLoader->method('loadAll')->will($this->returnValue([
+            new ProductManufacturer(),
+            new ProductManufacturer()
+        ]));
+
+        $manufacturerType = new ManufacturerChoiceType($manufacturerLoader);
+        return array(new PreloadedExtension([
+            $manufacturerType->getName() => $manufacturerType
+        ], []));
+    }
+    
     public function testSubmitValidData()
     {
         $formData = array(
@@ -37,7 +59,8 @@ class ProductTypeTest extends TypeTestCase
             'width' => 10,
             'height' => 10,
             'depth' => 10,
-            'availableOn' => '2015-05-21'
+            'availableOn' => '2015-05-21',
+            'manufacturer' => new ProductManufacturer()
         );
         
         $object = new Product();

@@ -3,6 +3,7 @@ parameters:
     xidea_product.product.form.choice.type.class: Xidea\Bundle\ProductBundle\Form\Type\ProductChoiceType
     xidea_product.product.form.factory.default.class: Xidea\Bundle\BaseBundle\Form\Factory\FormFactory
     xidea_product.product.form.handler.default.class: Xidea\Bundle\ProductBundle\Form\Handler\ProductFormHandler
+    xidea_product.manufacturer.form.choice.type.class: Xidea\Bundle\ProductBundle\Form\Type\ManufacturerChoiceType
 
 services:
     xidea_product.product.form.type:
@@ -29,3 +30,9 @@ services:
         arguments:
             - @xidea_product.product.form.factory
             - @event_dispatcher
+    xidea_product.manufacturer.form.choice.type:
+        class: %xidea_product.manufacturer.form.choice.type.class%
+        arguments:
+            - @xidea_product.manufacturer.loader
+        tags:
+            - { name: form.type, alias: "xidea_manufacturer_choice" }

@@ -95,6 +95,9 @@ class ProductType extends AbstractType
                 'widget' => 'single_text',
                 'required' => false
             ))
+            ->add('manufacturer', 'xidea_manufacturer_choice', array(
+                'label' => 'product.manufacturer'
+            ))
             ->add('save', 'submit', array('label' => 'product_form.submit'))
         ;
     }
