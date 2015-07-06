@@ -6,7 +6,7 @@ services:
     xidea_product.manufacturer.configuration.default:
         class: %xidea_product.manufacturer.configuration.default.class%
         arguments:
-            - @xidea_product.template.configuration
+            - %xidea_product.manufacturer.code%
     xidea_product.manufacturer.factory.default:
         class: %xidea_product.manufacturer.factory.default.class%
         arguments:

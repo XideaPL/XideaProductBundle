@@ -33,11 +33,6 @@ class Configuration extends AbstractConfiguration
         return $treeBuilder;
     }
     
-    public function getDefaultTemplateNamespace()
-    {
-        return '@XideaProduct';
-    }
-    
     protected function addProductSection(ArrayNodeDefinition $node)
     {
         $node
@@ -93,14 +88,6 @@ class Configuration extends AbstractConfiguration
                         ->scalarNode('loader')->defaultValue('xidea_product.manufacturer.loader.default')->end()
                     ->end()
                 ->end()
-            ->end();
-    }
-    
-    protected function addTemplateSection(ArrayNodeDefinition $node)
-    {
-        $node
-            ->children()
-                ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), [], true))
             ->end();
     }
 }

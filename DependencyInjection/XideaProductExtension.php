@@ -27,14 +27,11 @@ class XideaProductExtension extends AbstractExtension
         $loader->load('form.yml');
         $loader->load('manufacturer.yml');
         $loader->load('manufacturer_orm.yml');
-        $loader->load('template.yml');
 
         $this->loadProductSection($config['product'], $container, $loader);
         $this->loadManufacturerSection($config['manufacturer'], $container, $loader);
 
-        if (isset($config['template'])) {
-            $this->loadTemplateSection($this->getAlias(), $config['template'], $container, $loader);
-        }
+        $this->loadTemplateSection($config, $container, $loader);
     }
 
     protected function loadProductSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
@@ -81,13 +78,12 @@ class XideaProductExtension extends AbstractExtension
     protected function getDefaultTemplates()
     {
         return [
-            'main' => ['namespace' => '', 'path' => 'main'],
-            'product_main' => ['path' => 'main'],
-            'product_list' => ['path' => 'Product/List/list'],
-            'product_show' => ['path' => 'Product/Show/show'],
-            'product_create' => ['path' => 'Product/Create/create'],
-            'product_form' => ['path' => 'Product/Form/form'],
-            'product_form_fields' => ['path' => 'Product/Form/fields']
+            'product_main' => ['path' => '@XideaProduct/main'],
+            'product_list' => ['path' => '@XideaProduct/Product/List/list'],
+            'product_show' => ['path' => '@XideaProduct/Product/Show/show'],
+            'product_create' => ['path' => '@XideaProduct/Product/Create/create'],
+            'product_form' => ['path' => '@XideaProduct/Product/Form/form'],
+            'product_form_fields' => ['path' => '@XideaProduct/Product/Form/fields']
         ];
     }
 
