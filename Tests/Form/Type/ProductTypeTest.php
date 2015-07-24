@@ -70,7 +70,7 @@ class ProductTypeTest extends TypeTestCase
         $form = $this->factory->create($type);
         //$object->fromArray($formData);
         $form->setData($object);
-
+        
         // submit the data to the form directly
         $form->submit($formData);
 

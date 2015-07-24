@@ -28,35 +28,36 @@ class CreateController extends AbstractCreateController
     /*
      * @var ProductDirectorInterface
      */
-    protected $productDirector;
-
-    /*
-     * @var ProductManagerInterface
-     */
-    protected $productManager;
-
+    protected $director;
+    
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param ProductDirectorInterface $productDirector
-     * @param ProductManagerInterface $modelManager
+     * @param ProductDirectorInterface $director
+     * @param ProductManagerInterface $manager
      * @param FormHandlerInterface $formHandler
      */
-    public function __construct(ConfigurationInterface $configuration, ProductDirectorInterface $productDirector, ProductManagerInterface $modelManager, FormHandlerInterface $formHandler)
+    public function __construct(ConfigurationInterface $configuration, ProductDirectorInterface $director, ProductManagerInterface $manager, FormHandlerInterface $formHandler)
     {
-        parent::__construct($configuration, $modelManager, $formHandler);
+        parent::__construct($configuration, $manager, $formHandler);
 
-        $this->productDirector = $productDirector;
+        $this->director = $director;
         
         $this->createTemplate = 'product_create';
         $this->createFormTemplate = 'product_create_form';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createModel()
     {
-        return $this->productDirector->build();
+        return $this->director->build();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onPreCreate($model, Request $request)
     {
         $this->dispatch(ProductEvents::PRE_CREATE, $event = new GetProductResponseEvent($model, $request));
@@ -64,6 +65,9 @@ class CreateController extends AbstractCreateController
         return $event->getResponse();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onCreateSuccess($model, Request $request)
     {
         $this->dispatch(ProductEvents::CREATE_SUCCESS, $event = new GetProductResponseEvent($model, $request));
@@ -77,6 +81,9 @@ class CreateController extends AbstractCreateController
         return $response;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onCreateCompleted($model, Request $request, Response $response)
     {
         $this->dispatch(ProductEvents::CREATE_COMPLETED, $event = new FilterProductResponseEvent($model, $request, $response));

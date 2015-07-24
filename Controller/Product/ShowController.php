@@ -24,20 +24,28 @@ class ShowController extends AbstractShowController
     /*
      * @var ProductLoaderInterface
      */
-    protected $productLoader;
+    protected $loader;
 
-    public function __construct(ConfigurationInterface $configuration, ProductLoaderInterface $productLoader)
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     * @param ProductLoaderInterface $loader
+     */
+    public function __construct(ConfigurationInterface $configuration, ProductLoaderInterface $loader)
     {
         parent::__construct($configuration);
 
-        $this->productLoader = $productLoader;
+        $this->loader = $loader;
         
         $this->showTemplate = 'product_show';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function loadModel($id)
     {
-        $product = $this->productLoader->load($id);
+        $product = $this->loader->load($id);
 
         if (!$product instanceof ProductInterface) {
             throw new NotFoundHttpException('product.not_found');
@@ -46,6 +54,9 @@ class ShowController extends AbstractShowController
         return $product;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onPreShow($object, Request $request)
     {
         return;

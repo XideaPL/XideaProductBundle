@@ -16,4 +16,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository implements ProductRepositoryInterface
 {
+    public function findQb()
+    {
+        $qb = $this->createQueryBuilder('p');
+        
+        return $qb;
+    }
 }

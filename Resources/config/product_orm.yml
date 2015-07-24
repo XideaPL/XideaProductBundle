@@ -14,6 +14,8 @@ services:
         class: %xidea_product.product.loader.default.class%
         arguments:
             - @xidea_product.product.repository.default
+            - @xidea_product.product.configuration
+            - @xidea_base.paginator
     xidea_product.product.manager.default:
         class: %xidea_product.product.manager.default.class%
         arguments:

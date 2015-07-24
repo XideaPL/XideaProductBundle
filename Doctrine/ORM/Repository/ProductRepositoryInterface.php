@@ -14,4 +14,36 @@ namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository;
  */
 interface ProductRepositoryInterface
 {
+    /*
+     * @param int $id
+     * 
+     * @return \Xidea\Component\Product\Model\ProductInterface
+     */
+    function find($id);
+    
+    /*
+     * @return array
+     */
+    function findAll();
+    
+    /**
+     * 
+     * @param array $criteria
+     * @param array $orderBy
+     * @param int $limit
+     * @param int $offset
+     */
+    function findBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null);
+    
+    /**
+     * 
+     * @param array $criteria
+     * @param array $orderBy
+     */
+    function findOneBy(array $criteria, array $orderBy = array());
+    
+    /*
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    function findQb();
 }
