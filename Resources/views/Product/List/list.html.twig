@@ -4,24 +4,24 @@
 {% endblock %}
 {% block bundle_main %}
     {% block product_main %}
-        <div class="box product-box">
+        <div class="box box-default product-box">
             <div class="box-header">
                 <h3 class="box-title">{{ 'product_list.title'|trans }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                 {% block product_list %}
-                    <div class="product-list">
+                    <div class="product-list table-responsive">
                         <table class="table table-striped product-table">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ 'product.sku'|trans }}</th>
-                                    <th>{{ 'product.name'|trans }}</th>
-                                    <th>{{ 'product.price'|trans }}</th>
-                                    <th>{{ 'product.retail_price'|trans }}</th>
-                                    <th>{{ 'product.qty'|trans }}</th>
-                                    <th>{{ 'product.updated_at'|trans }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'product.sku'|trans, 'p.sku') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'product.name'|trans, 'p.name') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'product.price'|trans, 'p.price') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'product.retail_price'|trans, 'p.retail_price') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'product.qty'|trans, 'p.qty') }}</th>
+                                    <th>{{ xidea_base_sorting(models.sorting, 'product.updated_at'|trans, 'p.updated_at') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,6 +49,7 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        {{ xidea_base_pagination(models) }}
                     </div>
                     <!-- /.product-list -->
                 {% endblock %}
