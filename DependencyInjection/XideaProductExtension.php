@@ -23,8 +23,6 @@ class XideaProductExtension extends AbstractExtension
 
         $loader->load('product.yml');
         $loader->load('product_orm.yml');
-        $loader->load('controller.yml');
-        $loader->load('form.yml');
         $loader->load('manufacturer.yml');
         $loader->load('manufacturer_orm.yml');
 

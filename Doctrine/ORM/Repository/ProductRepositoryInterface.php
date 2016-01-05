@@ -17,7 +17,7 @@ interface ProductRepositoryInterface
     /*
      * @param int $id
      * 
-     * @return \Xidea\Component\Product\Model\ProductInterface
+     * @return \Xidea\Product\Model\ProductInterface
      */
     function find($id);
     

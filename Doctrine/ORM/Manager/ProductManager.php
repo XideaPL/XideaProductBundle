@@ -10,21 +10,17 @@
 namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Manager;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-
 use Doctrine\ORM\EntityManager;
-
-use Xidea\Component\Base\Doctrine\ORM\Manager\ModelManagerInterface;
-
-use Xidea\Component\Product\Manager\ProductManagerInterface,
-    Xidea\Component\Product\Model\ProductInterface;
-
-use Xidea\Bundle\ProductBundle\ProductEvents,
-    Xidea\Bundle\ProductBundle\Event\ProductEvent;
+use Xidea\Base\Model\Manager\Doctrine\ORM\ManagerInterface as ModelManagerInterface;
+use Xidea\Product\ManagerInterface;
+use Xidea\Product\ProductInterface;
+use Xidea\Bundle\ProductBundle\ProductEvents;
+use Xidea\Bundle\ProductBundle\Event\ProductEvent;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ProductManager implements ModelManagerInterface, ProductManagerInterface
+class ProductManager implements ManagerInterface, ModelManagerInterface
 {
     /*
      * @var bool

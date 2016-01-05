@@ -1,4 +1,4 @@
-Xidea\Component\Product\Model\AbstractProduct:
+Xidea\Product\Model\AbstractProduct:
     properties:
         name:
             - NotBlank: {}

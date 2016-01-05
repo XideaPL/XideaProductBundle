@@ -7,41 +7,56 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle\Controller\Product;
+namespace Xidea\Bundle\ProductBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Xidea\Component\Product\Loader\ProductLoaderInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractShowController;
-use Xidea\Component\Product\Model\ProductInterface;
+use Xidea\Product\LoaderInterface;
+use Xidea\Base\ConfigurationInterface,
+    Xidea\Bundle\BaseBundle\Controller\AbstractController;
+use Xidea\Product\ProductInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ShowController extends AbstractShowController
+class ShowController extends AbstractController
 {
     /*
-     * @var ProductLoaderInterface
+     * @var LoaderInterface
      */
     protected $loader;
-
+    
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param ProductLoaderInterface $loader
+     * @param LoaderInterface $loader
      */
-    public function __construct(ConfigurationInterface $configuration, ProductLoaderInterface $loader)
+    public function __construct(ConfigurationInterface $configuration, LoaderInterface $loader)
     {
         parent::__construct($configuration);
 
         $this->loader = $loader;
+    }
+    
+    /**
+     * 
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function showAction($id, Request $request)
+    {
+        $model = $this->loadModel($id);
         
-        $this->showTemplate = 'product_show';
+        return $this->render('product_show', array(
+            'model' => $model
+        ));
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     * 
+     * @return ProductInterface|null
      */
     protected function loadModel($id)
     {
@@ -52,13 +67,5 @@ class ShowController extends AbstractShowController
         }
 
         return $product;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreShow($object, Request $request)
-    {
-        return;
     }
 }

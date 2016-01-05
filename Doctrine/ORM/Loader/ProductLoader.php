@@ -9,15 +9,15 @@
 
 namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader;
 
-use Xidea\Component\Product\Loader\ProductLoaderInterface,
-    Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepositoryInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Pagination\PaginatorInterface;
+use Xidea\Product\LoaderInterface;
+use Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepositoryInterface;
+use Xidea\Base\ConfigurationInterface;
+use Xidea\Base\Pagination\PaginatorInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ProductLoader implements ProductLoaderInterface
+class ProductLoader implements LoaderInterface
 {
     /*
      * @var ProductRepositoryInterface

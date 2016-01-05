@@ -9,15 +9,11 @@
 
 namespace Xidea\Bundle\ProductBundle\Tests\Fixtures\Model;
 
-use Xidea\Component\Product\Model\AbstractManufacturer;
+use Xidea\Bundle\ProductBundle\Model\AbstractManufacturer;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>
  */
 class ProductManufacturer extends AbstractManufacturer
 {
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 }

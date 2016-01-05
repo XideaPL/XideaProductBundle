@@ -7,13 +7,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle;
+namespace Xidea\Bundle\ProductBundle\Model;
 
-use Xidea\Product\Events;
+use Xidea\Product\AbstractManufacturer as BaseAbstractManufacturer;
 
 /**
- * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-final class ProductEvents extends Events
+abstract class AbstractManufacturer extends BaseAbstractManufacturer
 {
 }

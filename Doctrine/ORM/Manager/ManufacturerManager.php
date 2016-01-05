@@ -11,13 +11,13 @@ namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Manager;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\EntityManager;
-use Xidea\Component\Product\Manager\ManufacturerManagerInterface,
-    Xidea\Component\Product\Model\ManufacturerInterface;
+use Xidea\Product\Manufacturer\ManagerInterface;
+use Xidea\Product\ManufacturerInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ManufacturerManager implements ManufacturerManagerInterface
+class ManufacturerManager implements ManagerInterface
 {
     /*
      * @var EntityManager

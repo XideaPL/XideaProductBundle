@@ -9,15 +9,14 @@
 
 namespace Xidea\Bundle\ProductBundle\Doctrine\ORM\Loader;
 
-use Doctrine\ORM\EntityManager,
-    Doctrine\ORM\EntityRepository;
-
-use Xidea\Component\Product\Loader\ManufacturerLoaderInterface;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+use Xidea\Product\Manufacturer\LoaderInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ManufacturerLoader implements ManufacturerLoaderInterface
+class ManufacturerLoader implements LoaderInterface
 {
     /*
      * @var EntityRepository

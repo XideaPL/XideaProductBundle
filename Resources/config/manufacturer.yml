@@ -1,8 +1,12 @@
 parameters:
-    xidea_product.manufacturer.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
-    xidea_product.manufacturer.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
+    #services
+    xidea_product.manufacturer.configuration.default.class: Xidea\Base\Configuration\DefaultConfiguration
+    xidea_product.manufacturer.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
+    #forms
+    xidea_product.manufacturer.form.choice.type.class: Xidea\Bundle\ProductBundle\Form\Type\ManufacturerChoiceType
   
 services:
+    #services
     xidea_product.manufacturer.configuration.default:
         class: %xidea_product.manufacturer.configuration.default.class%
         arguments:
@@ -11,3 +15,10 @@ services:
         class: %xidea_product.manufacturer.factory.default.class%
         arguments:
             - %xidea_product.manufacturer.class%
+    #forms
+    xidea_product.manufacturer.form.choice.type:
+        class: %xidea_product.manufacturer.form.choice.type.class%
+        arguments:
+            - @xidea_product.manufacturer.loader
+        tags:
+            - { name: form.type, alias: "xidea_manufacturer_choice" }

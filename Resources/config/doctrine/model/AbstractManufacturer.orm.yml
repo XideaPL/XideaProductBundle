@@ -1,4 +1,4 @@
-Xidea\Component\Product\Model\AbstractManufacturer:
+Xidea\Bundle\ProductBundle\Model\AbstractManufacturer:
     type: mappedSuperclass
     id:
         id:

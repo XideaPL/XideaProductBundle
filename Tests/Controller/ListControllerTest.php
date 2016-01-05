@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle\Tests\Controller\Product;
+namespace Xidea\Bundle\ProductBundle\Tests\Controller;
 
 use Xidea\Bundle\ProductBundle\Tests\Controller\ControllerTestCase;
 

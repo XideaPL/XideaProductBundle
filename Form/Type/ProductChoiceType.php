@@ -13,7 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Xidea\Bundle\BaseBundle\Form\DataTransformer\ModelToIdTransformer;
-use Xidea\Component\Product\Loader\ProductLoaderInterface;
+use Xidea\Product\LoaderInterface;
 
 /**
  * Description of RegistrationType
@@ -23,14 +23,14 @@ use Xidea\Component\Product\Loader\ProductLoaderInterface;
 class ProductChoiceType extends AbstractType
 {
     /*
-     * var ProductLoaderInterface
+     * var LoaderInterface
      */
     protected $loader;
 
     /**
-     * @param ProductLoaderInterface $loader The Product loader
+     * @param LoaderInterface $loader The Product loader
      */
-    public function __construct(ProductLoaderInterface $loader)
+    public function __construct(LoaderInterface $loader)
     {
         $this->loader = $loader;
     }

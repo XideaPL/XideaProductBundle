@@ -7,39 +7,52 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\ProductBundle\Controller\Product;
+namespace Xidea\Bundle\ProductBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Xidea\Component\Product\Loader\ProductLoaderInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractListController;
+use Xidea\Product\LoaderInterface;
+use Xidea\Base\ConfigurationInterface,
+    Xidea\Bundle\BaseBundle\Controller\AbstractController;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ListController extends AbstractListController
+class ListController extends AbstractController
 {
     /*
-     * @var ProductLoaderInterface
+     * @var LoaderInterface
      */
     protected $loader;
 
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param ProductLoaderInterface $loader
+     * @param LoaderInterface $loader
      */
-    public function __construct(ConfigurationInterface $configuration, ProductLoaderInterface $loader)
+    public function __construct(ConfigurationInterface $configuration, LoaderInterface $loader)
     {
         parent::__construct($configuration);
         
         $this->loader = $loader;
-        
-        $this->listTemplate = 'product_list';
     }
     
     /**
-     * {@inheritdoc}
+     * 
+     * @param Request $request
+     * @return Response
+     */
+    public function listAction(Request $request)
+    {
+        $models = $this->loadModels($request);
+        
+        return $this->render('product_list', array(
+            'models' => $models
+        ));
+    }
+    
+    /**
+     * @param Request $request
+     * @return array
      */
     protected function loadModels(Request $request)
     {
@@ -47,13 +60,5 @@ class ListController extends AbstractListController
             $request->query->get($this->configuration->getPaginationParameterName(), 1),
             $this->configuration->getPaginationLimit()
         );
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreList($models, Request $request)
-    {
-        return;
     }
 }

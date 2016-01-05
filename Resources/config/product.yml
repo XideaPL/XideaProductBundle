@@ -1,10 +1,21 @@
 parameters:
-    xidea_product.product.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
-    xidea_product.product.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
-    xidea_product.product.builder.default.class: Xidea\Component\Product\Builder\ProductBuilder
-    xidea_product.product.director.default.class: Xidea\Component\Product\Builder\ProductDirector
+    #services
+    xidea_product.product.configuration.default.class: Xidea\Base\Configuration\DefaultConfiguration
+    xidea_product.product.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
+    xidea_product.product.builder.default.class: Xidea\Product\Builder\DefaultBuilder
+    xidea_product.product.director.default.class: Xidea\Product\Builder\DefaultDirector
+    #controllers
+    xidea_product.product.controller.list.class: Xidea\Bundle\ProductBundle\Controller\ListController
+    xidea_product.product.controller.show.class: Xidea\Bundle\ProductBundle\Controller\ShowController
+    xidea_product.product.controller.create.class: Xidea\Bundle\ProductBundle\Controller\CreateController
+    #forms
+    xidea_product.product.form.type.class: Xidea\Bundle\ProductBundle\Form\Type\ProductType
+    xidea_product.product.form.choice.type.class: Xidea\Bundle\ProductBundle\Form\Type\ProductChoiceType
+    xidea_product.product.form.factory.default.class: Xidea\Bundle\BaseBundle\Form\Factory\FormFactory
+    xidea_product.product.form.handler.default.class: Xidea\Bundle\ProductBundle\Form\Handler\ProductFormHandler    
   
 services:
+    #services
     xidea_product.product.configuration.default:
         class: %xidea_product.product.configuration.default.class%
         arguments:
@@ -23,3 +34,56 @@ services:
         class: %xidea_product.product.director.default.class%
         arguments:
             - @xidea_product.product.builder
+    #controllers
+    xidea_product.product.controller.list:
+        class: %xidea_product.product.controller.list.class%
+        arguments:
+            - @xidea_product.product.configuration
+            - @xidea_product.product.loader
+        calls:
+            - [setEventDispatcher, [@event_dispatcher]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
+    xidea_product.product.controller.show:
+        class: %xidea_product.product.controller.show.class%
+        arguments:
+            - @xidea_product.product.configuration
+            - @xidea_product.product.loader
+        calls:
+            - [setEventDispatcher, [@event_dispatcher]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
+    xidea_product.product.controller.create:
+        class: %xidea_product.product.controller.create.class%
+        arguments:
+            - @xidea_product.product.configuration
+            - @xidea_product.product.director
+            - @xidea_product.product.manager
+            - @xidea_product.product.form.handler
+        calls:
+            - [setEventDispatcher, [@event_dispatcher]]
+            - [setRouter, [@router]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
+    #forms
+    xidea_product.product.form.type:
+        class: %xidea_product.product.form.type.class%
+        arguments:
+            - %xidea_product.product.class%
+        tags:
+            - { name: form.type, alias: "xidea_product" }
+    xidea_product.product.form.choice.type:
+        class: %xidea_product.product.form.choice.type.class%
+        arguments:
+            - @xidea_product.product.loader
+        tags:
+            - { name: form.type, alias: "xidea_product_choice" }
+    xidea_product.product.form.factory.default:
+        class: %xidea_product.product.form.factory.default.class%
+        arguments:
+            - @form.factory
+            - %xidea_product.product.form.name%
+            - %xidea_product.product.form.type.name%
+            - %xidea_product.product.form.validation_groups%
+    xidea_product.product.form.handler.default:
+        class: %xidea_product.product.form.handler.default.class%
+        arguments:
+            - @xidea_product.product.form.factory
+            - @event_dispatcher

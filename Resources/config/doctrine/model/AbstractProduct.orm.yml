@@ -1,4 +1,4 @@
-Xidea\Component\Product\Model\AbstractProduct:
+Xidea\Bundle\ProductBundle\Model\AbstractProduct:
     type: mappedSuperclass
     repositoryClass: Xidea\Bundle\ProductBundle\Doctrine\ORM\Repository\ProductRepository
     id:
@@ -77,7 +77,7 @@ Xidea\Component\Product\Model\AbstractProduct:
             nullable: true
     manyToOne:
         manufacturer:
-            targetEntity: Xidea\Component\Product\Model\ManufacturerInterface
+            targetEntity: Xidea\Bundle\ProductBundle\Model\AbstractManufacturer
             joinColumn:
                 name: manufacturer_id
                 referencedColumnName: id
